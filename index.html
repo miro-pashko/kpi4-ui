@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interface elements: a short reference</title>
+<meta name="description" content="Theory of ten common user interface elements — what each one is, when to use it, when to avoid it, and how it is marked up.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="masthead__meta">Reference · Interface elements · Theory</p>
+    <h1 class="masthead__title">Ten elements every interface is assembled from</h1>
+    <p class="masthead__lede">Screens look endlessly varied, but the parts they are built from are few and
+      old. Each element answers one question and no other: pick one, pick several, type something, go
+      somewhere, see more, make it happen. What follows is the theory of those ten parts — what each one is,
+      the conditions under which it is the right choice, the conditions under which it is the wrong one, and
+      the markup it is written with.</p>
+    <dl class="masthead__facts">
+      <div><dt>Elements covered</dt><dd>10</dd></div>
+      <div><dt>Structure per element</dt><dd>Definition, use, misuse, markup</dd></div>
+      <div><dt>Prerequisite</dt><dd>Basic HTML</dd></div>
+    </dl>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============================================== 01 -->
+  <article class="el">
+    <div class="el__gutter"><span class="el__num">01</span></div>
+    <div class="el__main">
+      <h2 class="el__name">Radio button</h2>
+      <p class="el__def">A small circular control that takes <strong>one</strong> choice out of a set where
+        every option is visible at the same time.</p>
+
+      <p>Radio buttons work only in groups. Each button in a group carries the same name, and that shared
+        name is what enforces the rule: selecting any member clears whichever member was selected before. A
+        lone radio button is a design error, because nothing can ever deselect it once it has been chosen.</p>
+
+      <p>The defining property is that all options are on screen together. The reader compares the full set
+        before committing, which makes radio buttons the right tool whenever the wording of the options is
+        part of the decision — the difference between "Standard, 3–5 days, free" and "Express, next day,
+        60 ₴" is exactly what the person is weighing up. A group should also arrive with one option already
+        chosen, normally the safest or most common, so that the form has a valid state from the first moment.</p>
+
+      <div class="cols">
+        <section class="col">
+          <h3>Use when</h3>
+          <ul>
+            <li>The options genuinely exclude one another.</li>
+            <li>There are roughly two to six of them.</li>
+            <li>The options need explaining, not just naming.</li>
+            <li>Comparison matters more than saving space.</li>
+          </ul>
+        </section>
+        <section class="col col--warn">
+          <h3>Avoid when</h3>
+          <ul>
+            <li>The list is long — fold it into a dropdown instead.</li>
+            <li>More than one answer can be true — those are checkboxes.</li>
+            <li>The choice is a simple on/off — that is one checkbox, or a switch.</li>
+          </ul>
+        </section>
+      </div>
+
+      <figure class="code">
+        <figcaption>Markup</figcaption>
+        <pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Delivery speed&lt;/legend&gt;
+  &lt;label&gt;&lt;input type="radio" name="speed" value="standard" checked&gt; Standard&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="speed" value="express"&gt; Express&lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+      </figure>
+
+      <p class="aside"><span class="aside__tag">Accessibility</span> The <code>fieldset</code> and
+        <code>legend</code> are not decoration. Without them a screen reader announces three unrelated
+        options and never says what the question was.</p>
+    </div>
+  </article>
+
+  <!-- ============================================== 02 -->
+  <article class="el">
+    <div class="el__gutter"><span class="el__num">02</span></div>
+    <div class="el__main">
+      <h2 class="el__name">Checkbox</h2>
+      <p class="el__def">A square control holding one independent yes/no value, ticked and unticked on its
+        own terms.</p>
+
+      <p>Checkboxes placed together may look like a group, but ticking one never alters another. That
+        independence is the entire difference from a radio button, and the reason the shapes differ:
+        a circle means the choices push against each other, a square means they do not. The convention is
+        old enough that people read it without thinking about it, which is why swapping the shapes is such
+        an expensive mistake.</p>
+
+      <p>A checkbox has a third state besides checked and unchecked. When a parent checkbox governs a list
+        and only part of that list is ticked, it shows an <em>indeterminate</em> state, drawn as a dash
+        rather than a tick. This state cannot be set in HTML; it exists only as a property in script, since
+        it describes a relationship between controls rather than a value to be submitted.</p>
+
+      <div class="cols">
+        <section class="col">
+          <h3>Use when</h3>
+          <ul>
+            <li>Several options may be true at once: filters, features, notification channels.</li>
+            <li>One statement needs agreement: terms of service, a mailing list.</li>
+            <li>A parent needs to govern a list of children.</li>
+          </ul>
+        </section>
+        <section class="col col--warn">
+          <h3>Avoid when</h3>
+          <ul>
+            <li>Exactly one answer is allowed — use radio buttons.</li>
+            <li>The change takes effect instantly on a setting screen — a switch communicates that better.</li>
+            <li>The label needs a negative: "Don't hide unread" forces two negations to be untangled.</li>
+          </ul>
+        </section>
+      </div>
+
+      <figure class="code">
+        <figcaption>Markup</figcaption>
+        <pre><code>&lt;label&gt;&lt;input type="checkbox" name="notify" value="replies" checked&gt; Replies to my comments&lt;/label&gt;
+&lt;label&gt;&lt;input type="checkbox" name="notify" value="digest"&gt; Weekly summary&lt;/label&gt;</code></pre>
+      </figure>
+
+      <p class="aside"><span class="aside__tag">Convention</span> Label a checkbox with the state it
+        produces when ticked, phrased positively. The reader should be able to read the label as a sentence
+        that becomes true the moment the box is filled.</p>
+    </div>
+  </article>
+
+  <!-- ============================================== 03 -->
+  <article class="el">
+    <div class="el__gutter"><span class="el__num">03</span></div>
+    <div class="el__main">
+      <h2 class="el__name">Text input</h2>
+      <p class="el__def">A field that accepts typed characters — a value the interface could not have
+        offered in advance.</p>
+
+      <p>Everything else on this page narrows a decision down to something the designer anticipated. A text
+        input does the opposite: it accepts a name, an address, a search term, a sentence of complaint. That
+        openness is its strength and its cost, since anything typed may be misspelled, malformed, or
+        deliberately hostile, and must therefore be validated before it is trusted.</p>
+
+      <p>The <code>type</code> attribute is the cheapest improvement available. Setting it to
+        <code>email</code>, <code>tel</code>, <code>url</code>, <code>number</code> or <code>search</code>
+        changes the on-screen keyboard a phone offers, enables free browser validation, and tells password
+        managers and autofill what the field holds. Field width should match the expected content: a
+        postcode field as wide as a postcode is a hint delivered without a word of instruction. Anything
+        longer than a single line belongs in a <code>textarea</code>.</p>
+
+      <div class="cols">
+        <section class="col">
+          <h3>Use when</h3>
+          <ul>
+            <li>The set of valid answers is unbounded or very large.</li>
+            <li>The value is personal: a name, a message, a search.</li>
+            <li>Typing is genuinely faster than choosing from a list.</li>
+          </ul>
+        </section>
+        <section class="col col--warn">
+          <h3>Avoid when</h3>
+          <ul>
+            <li>The answer comes from a fixed list — typing only invites typos.</li>
+            <li>Dates, times and quantities have purpose-built controls.</li>
+            <li>The placeholder is being used in place of a label; it disappears exactly when it is needed.</li>
+          </ul>
+        </section>
+      </div>
+
+      <figure class="code">
+        <figcaption>Markup</figcaption>
+        <pre><code>&lt;label for="email"&gt;Email address&lt;/label&gt;
+&lt;input id="email" type="email" name="email" autocomplete="email"
+       placeholder="you@example.com" required&gt;
+&lt;p id="email-help"&gt;We will only write about this order.&lt;/p&gt;</code></pre>
+      </figure>
+
+      <p class="aside"><span class="aside__tag">Principle</span> A constraint that exists should be visible
+        before it is broken. A character limit, a required format or a minimum length belongs in helper text
+        under the field, not in an error message that appears after the work has been done.</p>
+    </div>
+  </article>
+
+  <!-- ============================================== 04 -->
+  <article class="el">
+    <div class="el__gutter"><span class="el__num">04</span></div>
+    <div class="el__main">
+      <h2 class="el__name">Tabs</h2>
+      <p class="el__def">A row of labels over a single panel, showing one section of related content at a
+        time.</p>
+
+      <p>Tabs divide material that belongs to one subject into parallel sections and reveal one of them. The
+        row of labels stays visible permanently, which is the point: it is a map of what else exists,
+        readable without scrolling and without clicking. The metaphor comes from index cards in a drawer,
+        and the implied depth — one card in front, the others immediately behind — is what makes switching
+        feel cheap rather than like navigation.</p>
+
+      <p>Because a tab switch changes only what is displayed, it must never save, submit or reload anything.
+        A reader who clicks a second tab expects to click back and find the first one exactly as they left
+        it. Labels stay to one or two words so that the whole row fits on a single line; a row that wraps,
+        or scrolls sideways, has stopped being a map.</p>
+
+      <div class="cols">
+        <section class="col">
+          <h3>Use when</h3>
+          <ul>
+            <li>Sections are siblings: equal in rank, rarely needed together.</li>
+            <li>There are between two and about six of them.</li>
+            <li>The reader benefits from seeing what else is available.</li>
+          </ul>
+        </section>
+        <section class="col col--warn">
+          <h3>Avoid when</h3>
+          <ul>
+            <li>The content must be compared side by side — tabs hide it.</li>
+            <li>The sections form a sequence; steps need a wizard with an order and a sense of progress.</li>
+            <li>Only one section really matters and the rest are filler.</li>
+          </ul>
+        </section>
+      </div>
+
+      <figure class="code">
+        <figcaption>Markup</figcaption>
+        <pre><code>&lt;div role="tablist" aria-label="Plant details"&gt;
+  &lt;button role="tab" id="t1" aria-controls="p1" aria-selected="true"&gt;Overview&lt;/button&gt;
+  &lt;button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1"&gt;Care&lt;/button&gt;
+&lt;/div&gt;
+&lt;div role="tabpanel" id="p1" aria-labelledby="t1"&gt;…&lt;/div&gt;
+&lt;div role="tabpanel" id="p2" aria-labelledby="t2" hidden&gt;…&lt;/div&gt;</code></pre>
+      </figure>
+
+      <p class="aside"><span class="aside__tag">Keyboard</span> A tab row is one stop in the tab order, not
+        one stop per tab. Arrow keys move between the labels; the Tab key jumps past the whole row to the
+        panel. This pattern is called a roving tabindex, and it is why the unselected tabs carry
+        <code>tabindex="-1"</code>.</p>
+    </div>
+  </article>
+
+  <!-- ============================================== 05 -->
+  <article class="el">
+    <div class="el__gutter"><span class="el__num">05</span></div>
+    <div class="el__main">
+      <h2 class="el__name">Button</h2>
+      <p class="el__def">A control that performs an action in the current context: it saves, sends,
+        calculates, deletes, opens.</p>
+
+      <p>A button changes state rather than location. That single sentence settles nearly every argument
+        about whether something should be a button or a link. The distinction is not cosmetic: browsers
+        treat links as addresses, offering to open them in a new tab, copy them, or return to them with the
+        back button, and none of that makes sense for an action that has already happened.</p>
+
+      <p>Buttons also carry rank. Filled, outlined and plain-text buttons form a visual hierarchy, and one
+        filled button per region is enough to say what the expected move is while leaving the alternatives
+        reachable but quiet. Labels should name the action with a verb: "Save changes" still makes sense
+        read aloud out of context, whereas "OK" and "Submit" mean nothing without the sentence above them.
+        Destructive actions look different from the rest, and when they cannot be undone they ask for
+        confirmation.</p>
+
+      <div class="cols">
+        <section class="col">
+          <h3>Use when</h3>
+          <ul>
+            <li>Something happens on this page: submitting, calculating, toggling, opening a dialog.</li>
+            <li>The action needs ranking against neighbouring actions.</li>
+            <li>The result may take time and needs reporting back.</li>
+          </ul>
+        </section>
+        <section class="col col--warn">
+          <h3>Avoid when</h3>
+          <ul>
+            <li>The address changes — that is a link wearing a button's clothes.</li>
+            <li>Several filled buttons compete in one area and none reads as primary.</li>
+            <li>It is disabled with no explanation of what would enable it.</li>
+          </ul>
+        </section>
+      </div>
+
+      <figure class="code">
+        <figcaption>Markup</figcaption>
+        <pre><code>&lt;button type="submit" class="btn btn--primary"&gt;Save changes&lt;/button&gt;
+&lt;button type="button" class="btn"&gt;Cancel&lt;/button&gt;
+&lt;button type="button" class="btn btn--danger"&gt;Delete account&lt;/button&gt;</code></pre>
+      </figure>
+
+      <p class="aside"><span class="aside__tag">Detail</span> Always set <code>type</code>. A button inside
+        a form defaults to <code>type="submit"</code>, so a "Cancel" button with no type will cheerfully
+        submit the form it was supposed to abandon.</p>
+    </div>
+  </article>
+
+  <!-- ============================================== 06 -->
+  <article class="el">
+    <div class="el__gutter"><span class="el__num">06</span></div>
+    <div class="el__main">
+      <h2 class="el__name">Text label</h2>
+      <p class="el__def">Static text attached to another element: the name above a field, the rule beneath
+        it, the verdict after it.</p>
+
+      <p>A label is the only element here that does nothing on its own. Its whole function is to give
+        meaning to something adjacent. An unlabelled field is a box whose purpose must be inferred from
+        surrounding context, and that inference fails the moment the context scrolls off the screen, or the
+        page is read by something that cannot see layout at all.</p>
+
+      <p>Three kinds of text do this work. The <em>label</em> names the control. <em>Helper text</em> states
+        a rule in advance — the accepted format, the minimum length, what the value will be used for.
+        <em>Status text</em> reports afterwards what happened, and when something failed it says what to do
+        about it, because "Invalid input" tells the reader only that they have been judged. In HTML the
+        first of these is a real <code>&lt;label for="…"&gt;</code>, and the connection it makes has a
+        practical side effect: clicking the words focuses the field or ticks the box, which enlarges a small
+        target into a comfortable one.</p>
+
+      <div class="cols">
+        <section class="col">
+          <h3>Use when</h3>
+          <ul>
+            <li>Any input exists — there are no exceptions worth making.</li>
+            <li>A constraint should be known before it is broken.</li>
+            <li>An action has finished and its outcome needs stating.</li>
+          </ul>
+        </section>
+        <section class="col col--warn">
+          <h3>Avoid when</h3>
+          <ul>
+            <li>A placeholder is standing in for the label.</li>
+            <li>The label restates the obvious next to a clearly named field.</li>
+            <li>Required markers are used when almost everything is required — mark the optional ones instead.</li>
+          </ul>
+        </section>
+      </div>
+
+      <figure class="code">
+        <figcaption>Markup</figcaption>
+        <pre><code>&lt;label for="pass"&gt;New password&lt;/label&gt;
+&lt;input id="pass" type="password" aria-describedby="pass-help"&gt;
+&lt;p id="pass-help"&gt;At least 8 characters, including one digit.&lt;/p&gt;</code></pre>
+      </figure>
+
+      <p class="aside"><span class="aside__tag">Accessibility</span> <code>for</code> must match the
+        input's <code>id</code> exactly; <code>aria-describedby</code> attaches the helper text so it is
+        read out along with the field name rather than skipped.</p>
+    </div>
+  </article>
+
+  <!-- ============================================== 07 -->
+  <article class="el">
+    <div class="el__gutter"><span class="el__num">07</span></div>
+    <div class="el__main">
+      <h2 class="el__name">Link</h2>
+      <p class="el__def">Text or an image pointing at an address — another page, a place on this page, a
+        file, an email client.</p>
+
+      <p>The link is the oldest element on this list and the one the web was built around. It changes
+        location rather than state. Everything the browser gives a reader for free follows from that:
+        opening in a new tab, copying the address, bookmarking it, going back. Rebuilding a link out of a
+        div and a click handler throws all of it away.</p>
+
+      <p>Link text should describe its destination well enough to survive being removed from the sentence,
+        because assistive software can list every link on a page in isolation, and a list of twelve items
+        all reading "click here" is worthless. Underlines matter for the same kind of reason: colour alone
+        disappears in greyscale printing and for readers who cannot distinguish the hues used. The visited
+        state, often stripped out for tidiness, quietly tells a reader which of a long list of results they
+        have already tried.</p>
+
+      <div class="cols">
+        <section class="col">
+          <h3>Use when</h3>
+          <ul>
+            <li>The destination is a different page, document or position.</li>
+            <li>A file should be downloaded rather than opened.</li>
+            <li>The reader may want the address itself, to share or return to.</li>
+          </ul>
+        </section>
+        <section class="col col--warn">
+          <h3>Avoid when</h3>
+          <ul>
+            <li>Nothing is navigated to and the action happens here — that is a button.</li>
+            <li>The text says "here", "this" or "more".</li>
+            <li>A new tab is opened silently, taking the back button away without warning.</li>
+          </ul>
+        </section>
+      </div>
+
+      <figure class="code">
+        <figcaption>Markup</figcaption>
+        <pre><code>&lt;a href="/shipping"&gt;Read the shipping policy&lt;/a&gt;
+&lt;a href="#grid"&gt;Jump to the data grid&lt;/a&gt;
+&lt;a href="report.pdf" download&gt;Download the report&lt;/a&gt;
+&lt;a href="https://example.org" target="_blank" rel="noopener noreferrer"&gt;Example (new tab)&lt;/a&gt;</code></pre>
+      </figure>
+
+      <p class="aside"><span class="aside__tag">Security</span> <code>rel="noopener noreferrer"</code>
+        belongs on every link that opens a new tab. Without it the opened page keeps a reference back to
+        yours and can redirect it.</p>
+    </div>
+  </article>
+
+  <!-- ============================================== 08 -->
+  <article class="el">
+    <div class="el__gutter"><span class="el__num">08</span></div>
+    <div class="el__main">
+      <h2 class="el__name">Tooltip</h2>
+      <p class="el__def">A brief explanation that appears when an element is pointed at or focused, and
+        vanishes when attention moves on.</p>
+
+      <p>A tooltip buys space. The interface stays short for the people who already know what they are
+        doing, and the explanation waits for whoever wants it. It is progressive disclosure at its smallest
+        scale: one line, one element, no commitment.</p>
+
+      <p>Its weaknesses all follow from the same fact — it is not there by default. It cannot be reached by
+        touch in the ordinary way, it never appears in print, and a reader skimming quickly will not know it
+        exists. Nothing essential can therefore live inside one. A tooltip names an icon-only button,
+        expands an abbreviation, or defines a term of art; it does not hold instructions, error messages, or
+        the rule that would have prevented a mistake.</p>
+
+      <div class="cols">
+        <section class="col">
+          <h3>Use when</h3>
+          <ul>
+            <li>An icon-only control needs a name.</li>
+            <li>A term or abbreviation needs one line of definition.</li>
+            <li>The information is genuinely optional.</li>
+          </ul>
+        </section>
+        <section class="col col--warn">
+          <h3>Avoid when</h3>
+          <ul>
+            <li>The content runs longer than a line — use helper text or a panel.</li>
+            <li>It contains something interactive; a tooltip cannot reliably be moved into.</li>
+            <li>It appears only on hover, making it invisible to keyboard and touch.</li>
+          </ul>
+        </section>
+      </div>
+
+      <figure class="code">
+        <figcaption>Markup and behaviour</figcaption>
+        <pre><code>&lt;button aria-label="Archive" aria-describedby="tip-archive"&gt;▤&lt;/button&gt;
+&lt;span role="tooltip" id="tip-archive"&gt;Move to the archive&lt;/span&gt;
+
+/* revealed on pointer and on keyboard focus, never on hover alone */
+.tip:hover .bubble,
+.tip:focus-visible .bubble { opacity: 1; visibility: visible; }</code></pre>
+      </figure>
+
+      <p class="aside"><span class="aside__tag">Distinction</span> The browser's own
+        <code>title</code> attribute looks like a tooltip but is not a substitute: it is slow to appear,
+        cannot be styled, and is skipped by much assistive software.</p>
+    </div>
+  </article>
+
+  <!-- ============================================== 09 -->
+  <article class="el">
+    <div class="el__gutter"><span class="el__num">09</span></div>
+    <div class="el__main">
+      <h2 class="el__name">Dropdown list</h2>
+      <p class="el__def">A collapsed list that opens to reveal its options and closes once one is chosen.</p>
+
+      <p>A dropdown does the same job as a group of radio buttons — one answer out of many — but keeps the
+        options hidden until asked for. It trades visibility for space, and that trade becomes worthwhile
+        once the list is long enough that showing it in full would drown everything around it. The cost is
+        real: an option nobody opens the list to see may as well not exist, which is why a dropdown is a
+        poor place for anything the reader needs to be persuaded by.</p>
+
+      <p>Order carries meaning. Alphabetical order suits names and countries; frequency order suits lists
+        with obvious favourites; chronological order suits years. Related options can be gathered under
+        headings with <code>optgroup</code> so a long list can be skimmed by group rather than read line by
+        line. The native control is worth defending against custom replacements, because an operating
+        system already renders it as a full-height picker on a phone, allows typing to jump to an entry, and
+        handles keyboard and screen-reader behaviour that a rebuilt version has to reimplement in full.</p>
+
+      <div class="cols">
+        <section class="col">
+          <h3>Use when</h3>
+          <ul>
+            <li>There are more than about six options.</li>
+            <li>The options are self-explanatory and need no comparison.</li>
+            <li>Vertical space is scarce and the field is one of many.</li>
+          </ul>
+        </section>
+        <section class="col col--warn">
+          <h3>Avoid when</h3>
+          <ul>
+            <li>There are two or three options — show them as radio buttons.</li>
+            <li>Several answers are allowed; checkboxes beat a list that demands a modifier key.</li>
+            <li>The list is enormous; a searchable field with suggestions serves better.</li>
+          </ul>
+        </section>
+      </div>
+
+      <figure class="code">
+        <figcaption>Markup</figcaption>
+        <pre><code>&lt;label for="cat"&gt;Category&lt;/label&gt;
+&lt;select id="cat" name="cat"&gt;
+  &lt;optgroup label="Indoor"&gt;
+    &lt;option value="foliage"&gt;Foliage&lt;/option&gt;
+    &lt;option value="succulents"&gt;Succulents&lt;/option&gt;
+  &lt;/optgroup&gt;
+  &lt;optgroup label="Outdoor"&gt;
+    &lt;option value="shrubs"&gt;Shrubs&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+      </figure>
+
+      <p class="aside"><span class="aside__tag">Terminology</span> "Dropdown" is used loosely for three
+        different things: this select control, a navigation menu that opens on hover, and a combo box that
+        filters as you type. Only the first is a form field, and only the first submits a value.</p>
+    </div>
+  </article>
+
+  <!-- ============================================== 10 -->
+  <article class="el">
+    <div class="el__gutter"><span class="el__num">10</span></div>
+    <div class="el__main">
+      <h2 class="el__name">Data grid</h2>
+      <p class="el__def">Records laid out in rows and their attributes in columns, with tools for sorting,
+        filtering and selecting.</p>
+
+      <p>A grid exists so that the eye can run down one column and compare like with like. Everything about
+        its formatting serves that: numbers aligned to the right in a single format so digits line up by
+        place value, one row per record with no merged cells, and column headers that stay readable while
+        the body scrolls. A table becomes a grid when the tools arrive on top — sorting by column, filtering
+        by value, selecting rows and acting on the selection at once.</p>
+
+      <p>Those tools must report their own state, or the reader loses their place. A sorted column says
+        which direction it is sorted in; a filter says how many rows it is hiding; a selection says how many
+        rows it holds, and whether the total spans pages that are not visible. Beneath the tools there
+        should still be an ordinary HTML table: rows, cells, and real <code>&lt;th&gt;</code> headers scoped
+        to their column, since that structure is what allows a screen reader to announce "City, Lviv"
+        instead of reading a wall of loose values.</p>
+
+      <div class="cols">
+        <section class="col">
+          <h3>Use when</h3>
+          <ul>
+            <li>Records share the same fields and must be compared.</li>
+            <li>The number of rows is unknown in advance.</li>
+            <li>Bulk actions apply to a chosen subset.</li>
+          </ul>
+        </section>
+        <section class="col col--warn">
+          <h3>Avoid when</h3>
+          <ul>
+            <li>There are only a handful of items with one attribute each — a list is lighter.</li>
+            <li>Layout is the only reason for the table; that is a job for CSS.</li>
+            <li>Every column is shown at once on a phone, where a card per record reads better.</li>
+          </ul>
+        </section>
+      </div>
+
+      <figure class="code">
+        <figcaption>Markup</figcaption>
+        <pre><code>&lt;table&gt;
+  &lt;caption&gt;Recent orders&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col" aria-sort="ascending"&gt;Customer&lt;/th&gt;
+      &lt;th scope="col"&gt;City&lt;/th&gt;
+      &lt;th scope="col"&gt;Total&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;Anna Kovalenko&lt;/td&gt;&lt;td&gt;Kyiv&lt;/td&gt;&lt;td&gt;1 240&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      </figure>
+
+      <p class="aside"><span class="aside__tag">Accessibility</span> <code>scope</code> binds a header to
+        its column or row, and <code>aria-sort</code> states the current sort direction. A
+        <code>caption</code> gives the table a name, which is what lets a reader skip it or enter it
+        deliberately.</p>
+    </div>
+  </article>
+
+  <!-- ============================================== SUMMARY -->
+  <section class="summary">
+    <h2>The ten at a glance</h2>
+    <p class="summary__lede">Each element answers one question. Naming that question is usually enough to
+      settle which element belongs in a given place.</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Element</th>
+          <th scope="col">Question it answers</th>
+          <th scope="col">Typical mistake</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Radio button</th><td>Which one of these?</td><td>Used for a long list</td></tr>
+        <tr><th scope="row">Checkbox</th><td>Is this true?</td><td>Used where answers exclude each other</td></tr>
+        <tr><th scope="row">Text input</th><td>What exactly?</td><td>Placeholder used as the label</td></tr>
+        <tr><th scope="row">Tabs</th><td>Which section?</td><td>Used for ordered steps</td></tr>
+        <tr><th scope="row">Button</th><td>Do it now.</td><td>Used to navigate somewhere</td></tr>
+        <tr><th scope="row">Text label</th><td>What is this?</td><td>Omitted, or not tied to its control</td></tr>
+        <tr><th scope="row">Link</th><td>Where else?</td><td>Text that says "click here"</td></tr>
+        <tr><th scope="row">Tooltip</th><td>What does that mean?</td><td>Holds something essential</td></tr>
+        <tr><th scope="row">Dropdown list</th><td>Which one, from many?</td><td>Used for two options</td></tr>
+        <tr><th scope="row">Data grid</th><td>How do these compare?</td><td>Used purely for layout</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="summary__h3">Three decisions that cover most cases</h3>
+    <dl class="pairs">
+      <dt>Radio buttons or a dropdown</dt>
+      <dd>Both take exactly one answer. Show the options when there are few and their wording matters; fold
+        them away when the list is long and the options speak for themselves.</dd>
+      <dt>Radio buttons or checkboxes</dt>
+      <dd>Ask whether two answers could be true at the same time. If they could, the shapes are square.</dd>
+      <dt>A button or a link</dt>
+      <dd>Ask whether the address changes. Something that happens here is a button; somewhere else to be is
+        a link.</dd>
+    </dl>
+  </section>
+</main>
+
+<footer class="colophon">
+  <div class="wrap"></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,431 @@
+:root {
+  /* paper and surfaces */
+  --paper:      #f1f6fb;
+  --paper-deep: #e4eef8;
+  --surface:    #ffffff;
+  --well:       #f7fafd;
+
+  /* blues */
+  --blue:       #2b6fa8;
+  --blue-deep:  #1b4a75;
+  --blue-dark:  #103a5c;
+  --blue-soft:  #dbe9f6;
+  --blue-line:  #c3daee;
+  --blue-pale:  #eef5fc;
+
+  /* text */
+  --ink:   #12283c;
+  --ink-2: #3a5a75;
+  --ink-3: #6a869e;
+
+  /* signals */
+  --warn:     #8a5a1b;
+  --warn-bg:  #fbf3e4;
+  --warn-line:#e3cda3;
+
+  --line:   #d4e3f0;
+  --radius: 3px;
+
+  --sans:  "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --mono:  "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16.5px;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+.wrap {
+  width: min(100% - 2.5rem, 62rem);
+  margin-inline: auto;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blue-deep);
+  outline-offset: 2px;
+}
+
+code, kbd {
+  font-family: var(--mono);
+  font-size: .85em;
+  background: var(--blue-soft);
+  color: var(--blue-deep);
+  padding: .08em .32em;
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------
+   Masthead
+   --------------------------------------------------------- */
+
+.masthead {
+  background: linear-gradient(to bottom, var(--surface), var(--paper-deep));
+  border-bottom: 1px solid var(--blue-line);
+  padding: clamp(2.75rem, 7vw, 5.5rem) 0 clamp(2rem, 4vw, 3rem);
+}
+
+.masthead__meta {
+  margin: 0 0 1.5rem;
+  font-family: var(--mono);
+  font-size: .74rem;
+  letter-spacing: .04em;
+  color: var(--blue);
+  text-transform: none;
+}
+
+.masthead__title {
+  margin: 0;
+  max-width: 20ch;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(2.1rem, 5.6vw, 3.6rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--blue-dark);
+}
+
+.masthead__lede {
+  max-width: 58ch;
+  margin: 1.6rem 0 0;
+  font-size: 1.06rem;
+  color: var(--ink-2);
+}
+
+.masthead__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  margin: 2.5rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--blue-line);
+}
+.masthead__facts dt {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--ink-3);
+  margin-bottom: .25rem;
+}
+.masthead__facts dd {
+  margin: 0;
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--blue-deep);
+}
+
+/* ---------------------------------------------------------
+   Element entries
+   --------------------------------------------------------- */
+
+main { padding-bottom: 4rem; }
+
+.el {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: .5rem;
+  padding: clamp(2.5rem, 5vw, 3.75rem) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 52rem) {
+  .el {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: 0;
+  }
+}
+
+.el__gutter { padding-top: .55rem; }
+
+.el__num {
+  font-family: var(--mono);
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--blue);
+  display: block;
+}
+.el__num::after {
+  content: "";
+  display: block;
+  width: 1.75rem;
+  height: 1px;
+  background: var(--blue-line);
+  margin-top: .6rem;
+}
+
+.el__main { max-width: 62ch; }
+
+.el__name {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.55rem, 3.4vw, 2.1rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--blue-dark);
+}
+
+.el__def {
+  margin: .7rem 0 1.4rem;
+  font-size: 1.08rem;
+  line-height: 1.55;
+  color: var(--blue-deep);
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--blue-line);
+}
+.el__def strong { font-weight: 600; }
+
+.el__main > p {
+  margin: 0 0 1.1rem;
+  color: var(--ink-2);
+}
+.el__main > p em { color: var(--ink); font-style: italic; }
+
+/* two columns: use / avoid ------------------------------------------ */
+
+.cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  margin: 1.75rem 0;
+  background: var(--blue-line);
+  border: 1px solid var(--blue-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+@media (min-width: 38rem) {
+  .cols { grid-template-columns: 1fr 1fr; }
+}
+
+.col {
+  background: var(--blue-pale);
+  padding: 1rem 1.1rem 1.15rem;
+}
+.col--warn { background: var(--warn-bg); }
+
+.col h3 {
+  margin: 0 0 .6rem;
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--blue-deep);
+}
+.col--warn h3 { color: var(--warn); }
+
+.col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: .9rem;
+  line-height: 1.5;
+}
+.col li {
+  position: relative;
+  padding-left: .95rem;
+  margin-bottom: .45rem;
+  color: var(--ink-2);
+}
+.col li:last-child { margin-bottom: 0; }
+.col li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .62em;
+  width: .45rem;
+  height: 1px;
+  background: var(--blue);
+}
+.col--warn li::before { background: var(--warn); }
+
+/* code sample ------------------------------------------------------- */
+
+.code {
+  margin: 1.75rem 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.code figcaption {
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .04em;
+  color: var(--ink-3);
+  padding: .5rem .9rem;
+  background: var(--well);
+  border-bottom: 1px solid var(--line);
+}
+
+.code pre {
+  margin: 0;
+  padding: .9rem 1rem 1rem;
+  overflow-x: auto;
+}
+
+.code code {
+  font-family: var(--mono);
+  font-size: .78rem;
+  line-height: 1.6;
+  background: none;
+  color: var(--ink);
+  padding: 0;
+  white-space: pre;
+}
+
+/* aside note -------------------------------------------------------- */
+
+.aside {
+  margin: 1.5rem 0 0;
+  padding: .9rem 1.05rem;
+  background: var(--blue-soft);
+  border-left: 2px solid var(--blue);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: .92rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.aside__tag {
+  display: block;
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .04em;
+  color: var(--blue-deep);
+  margin-bottom: .3rem;
+}
+
+.aside code { background: var(--surface); }
+
+/* ---------------------------------------------------------
+   Summary
+   --------------------------------------------------------- */
+
+.summary {
+  padding: clamp(2.75rem, 5vw, 4rem) 0 1rem;
+}
+
+.summary h2 {
+  margin: 0 0 .6rem;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  letter-spacing: -0.015em;
+  color: var(--blue-dark);
+}
+
+.summary__lede {
+  max-width: 58ch;
+  margin: 0 0 2rem;
+  color: var(--ink-2);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .92rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.table th, .table td {
+  text-align: left;
+  padding: .65rem .85rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.table thead th {
+  background: var(--blue-soft);
+  border-bottom: 1px solid var(--blue-line);
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .03em;
+  color: var(--blue-deep);
+}
+
+.table tbody th {
+  font-weight: 600;
+  color: var(--blue-deep);
+  white-space: nowrap;
+}
+.table tbody td { color: var(--ink-2); }
+.table tbody tr:last-child th,
+.table tbody tr:last-child td { border-bottom: 0; }
+.table tbody tr:nth-child(even) th,
+.table tbody tr:nth-child(even) td { background: var(--well); }
+
+.summary__h3 {
+  margin: 3rem 0 1.25rem;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: var(--blue-dark);
+}
+
+.pairs { margin: 0; }
+.pairs dt {
+  font-weight: 600;
+  color: var(--blue-deep);
+  border-top: 1px solid var(--line);
+  padding-top: .9rem;
+}
+.pairs dd {
+  margin: .3rem 0 1.2rem;
+  max-width: 60ch;
+  color: var(--ink-2);
+}
+
+@media (min-width: 52rem) {
+  .pairs {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    column-gap: 2.5rem;
+  }
+  .pairs dt { grid-column: 1; }
+  .pairs dd {
+    grid-column: 2;
+    border-top: 1px solid var(--line);
+    padding-top: .9rem;
+    margin-bottom: 0;
+  }
+}
+
+/* ---------------------------------------------------------
+   Colophon
+   --------------------------------------------------------- */
+
+.colophon {
+  border-top: 1px solid var(--blue-line);
+  background: var(--paper-deep);
+  padding: 2rem 0 2.5rem;
+}
+.colophon p {
+  margin: 0;
+  max-width: 60ch;
+  font-size: .88rem;
+  color: var(--ink-3);
+}
+
+/* ---------------------------------------------------------
+   Print
+   --------------------------------------------------------- */
+
+@media print {
+  body { background: #fff; font-size: 10.5pt; }
+  .masthead { background: none; }
+  .el, .code, .cols { break-inside: avoid; }
+  .code pre { white-space: pre-wrap; }
+}
