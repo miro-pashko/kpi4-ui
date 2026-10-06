@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Interface elements: a short reference</title>
-<meta name="description" content="Theory of ten common user interface elements — what each one is, when to use it, when to avoid it, and how it is marked up.">
+<title>Елементи інтерфейсу: короткий довідник</title>
+<meta name="description" content="Теорія десяти поширених елементів інтерфейсу користувача — що являє собою кожен із них, із живим прикладом для кожного.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
@@ -12,19 +12,18 @@
 </head>
 <body>
 
-<header class="masthead">
+<header class="masthead" id="top">
   <div class="wrap">
-    <p class="masthead__meta">Reference · Interface elements · Theory</p>
-    <h1 class="masthead__title">Ten elements every interface is assembled from</h1>
-    <p class="masthead__lede">Screens look endlessly varied, but the parts they are built from are few and
-      old. Each element answers one question and no other: pick one, pick several, type something, go
-      somewhere, see more, make it happen. What follows is the theory of those ten parts — what each one is,
-      the conditions under which it is the right choice, the conditions under which it is the wrong one, and
-      the markup it is written with.</p>
+    <p class="masthead__meta">Довідник · Елементи інтерфейсу · Теорія</p>
+    <h1 class="masthead__title">Десять елементів, з яких складається будь-який інтерфейс</h1>
+    <p class="masthead__lede">Екрани здаються безмежно різноманітними, але частин, з яких їх збудовано, небагато,
+      і всі вони давні. Кожен елемент відповідає на одне запитання й ні на яке інше: обрати один варіант, обрати
+      кілька, ввести щось, перейти кудись, дізнатися більше, зробити дію. Далі — теорія цих десяти частин: що являє
+      собою кожна з них, а поруч — живий приклад, який можна випробувати власноруч.</p>
     <dl class="masthead__facts">
-      <div><dt>Elements covered</dt><dd>10</dd></div>
-      <div><dt>Structure per element</dt><dd>Definition, use, misuse, markup</dd></div>
-      <div><dt>Prerequisite</dt><dd>Basic HTML</dd></div>
+      <div><dt>Елементів</dt><dd>10</dd></div>
+      <div><dt>Структура розділу</dt><dd>Визначення, теорія, живий приклад</dd></div>
+      <div><dt>Попередні знання</dt><dd>Не потрібні</dd></div>
     </dl>
   </div>
 </header>
@@ -32,594 +31,861 @@
 <main class="wrap">
 
   <!-- ============================================== 01 -->
-  <article class="el">
+  <article class="el" id="el-01">
     <div class="el__gutter"><span class="el__num">01</span></div>
     <div class="el__main">
-      <h2 class="el__name">Radio button</h2>
-      <p class="el__def">A small circular control that takes <strong>one</strong> choice out of a set where
-        every option is visible at the same time.</p>
+      <h2 class="el__name">Радіокнопка</h2>
+      <p class="el__def">Невеликий круглий елемент керування, що дає змогу обрати <strong>один</strong> варіант
+        із набору, усі пункти якого видно одночасно.</p>
 
-      <p>Radio buttons work only in groups. Each button in a group carries the same name, and that shared
-        name is what enforces the rule: selecting any member clears whichever member was selected before. A
-        lone radio button is a design error, because nothing can ever deselect it once it has been chosen.</p>
+      <p>Радіокнопки працюють лише групами. Кнопки однієї групи пов’язані між собою, і саме цей зв’язок задає
+        правило: вибір будь-якого пункту знімає позначку з того, що був обраний раніше. Поодинока радіокнопка — це
+        помилка проєктування, адже, обравши її раз, скасувати вибір уже неможливо.</p>
 
-      <p>The defining property is that all options are on screen together. The reader compares the full set
-        before committing, which makes radio buttons the right tool whenever the wording of the options is
-        part of the decision — the difference between "Standard, 3–5 days, free" and "Express, next day,
-        60 ₴" is exactly what the person is weighing up. A group should also arrive with one option already
-        chosen, normally the safest or most common, so that the form has a valid state from the first moment.</p>
+      <p>Визначальна властивість — усі варіанти на екрані водночас. Людина порівнює весь набір, перш ніж ухвалити
+        рішення, тож формулювання варіантів саме стає частиною вибору: різниця між «Стандартна, 3–5 днів,
+        безкоштовно» та «Експрес, наступного дня, 60 ₴» — це якраз те, що зважують. Група зазвичай з’являється
+        з уже обраним варіантом, найбезпечнішим або найпоширенішим, тож форма має коректний стан від першої миті.</p>
 
-      <div class="cols">
-        <section class="col">
-          <h3>Use when</h3>
-          <ul>
-            <li>The options genuinely exclude one another.</li>
-            <li>There are roughly two to six of them.</li>
-            <li>The options need explaining, not just naming.</li>
-            <li>Comparison matters more than saving space.</li>
-          </ul>
-        </section>
-        <section class="col col--warn">
-          <h3>Avoid when</h3>
-          <ul>
-            <li>The list is long — fold it into a dropdown instead.</li>
-            <li>More than one answer can be true — those are checkboxes.</li>
-            <li>The choice is a simple on/off — that is one checkbox, or a switch.</li>
-          </ul>
-        </section>
+      <div class="demo">
+        <p class="demo__bar"><span>Живий приклад</span><span class="demo__hint">оберіть спосіб доставки</span></p>
+        <div class="demo__stage">
+          <fieldset class="fieldset" id="radio-demo">
+            <legend>Швидкість доставки</legend>
+            <div class="stack">
+              <label class="choice">
+                <input type="radio" name="speed" value="standard" data-label="Стандартна" data-price="0 ₴" checked>
+                <span><span class="choice__title">Стандартна</span>
+                  <span class="choice__meta">3–5 днів · безкоштовно</span></span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="speed" value="express" data-label="Експрес" data-price="60 ₴">
+                <span><span class="choice__title">Експрес</span>
+                  <span class="choice__meta">наступного дня · 60 ₴</span></span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="speed" value="pickup" data-label="Самовивіз" data-price="0 ₴">
+                <span><span class="choice__title">Самовивіз</span>
+                  <span class="choice__meta">з відділення вже сьогодні · безкоштовно</span></span>
+              </label>
+            </div>
+          </fieldset>
+        </div>
+        <p class="demo__out" id="radio-out" aria-live="polite"></p>
       </div>
-
-      <figure class="code">
-        <figcaption>Markup</figcaption>
-        <pre><code>&lt;fieldset&gt;
-  &lt;legend&gt;Delivery speed&lt;/legend&gt;
-  &lt;label&gt;&lt;input type="radio" name="speed" value="standard" checked&gt; Standard&lt;/label&gt;
-  &lt;label&gt;&lt;input type="radio" name="speed" value="express"&gt; Express&lt;/label&gt;
-&lt;/fieldset&gt;</code></pre>
-      </figure>
-
-      <p class="aside"><span class="aside__tag">Accessibility</span> The <code>fieldset</code> and
-        <code>legend</code> are not decoration. Without them a screen reader announces three unrelated
-        options and never says what the question was.</p>
     </div>
   </article>
 
   <!-- ============================================== 02 -->
-  <article class="el">
+  <article class="el" id="el-02">
     <div class="el__gutter"><span class="el__num">02</span></div>
     <div class="el__main">
-      <h2 class="el__name">Checkbox</h2>
-      <p class="el__def">A square control holding one independent yes/no value, ticked and unticked on its
-        own terms.</p>
+      <h2 class="el__name">Прапорець</h2>
+      <p class="el__def">Квадратний елемент керування, що зберігає одне незалежне значення «так/ні» і
+        позначається чи знімається сам по собі.</p>
 
-      <p>Checkboxes placed together may look like a group, but ticking one never alters another. That
-        independence is the entire difference from a radio button, and the reason the shapes differ:
-        a circle means the choices push against each other, a square means they do not. The convention is
-        old enough that people read it without thinking about it, which is why swapping the shapes is such
-        an expensive mistake.</p>
+      <p>Прапорці, розміщені поруч, можуть скидатися на групу, але позначка одного ніколи не змінює іншого. Ця
+        незалежність — уся відмінність від радіокнопки і причина того, що форми різні: коло означає, що варіанти
+        витісняють один одного, квадрат — що ні. Ця умовність настільки давня, що її зчитують не замислюючись, і
+        саме тому поміняти форми місцями — така дорога помилка.</p>
 
-      <p>A checkbox has a third state besides checked and unchecked. When a parent checkbox governs a list
-        and only part of that list is ticked, it shows an <em>indeterminate</em> state, drawn as a dash
-        rather than a tick. This state cannot be set in HTML; it exists only as a property in script, since
-        it describes a relationship between controls rather than a value to be submitted.</p>
+      <p>Окрім «позначено» і «не позначено», прапорець має третій стан. Коли батьківський прапорець керує
+        списком і позначено лише частину цього списку, він показує <em>невизначений</em> стан — рисочку замість
+        галочки. Цей стан описує не значення, а зв’язок між елементами, тому його ніколи не надсилають разом
+        із формою.</p>
 
-      <div class="cols">
-        <section class="col">
-          <h3>Use when</h3>
-          <ul>
-            <li>Several options may be true at once: filters, features, notification channels.</li>
-            <li>One statement needs agreement: terms of service, a mailing list.</li>
-            <li>A parent needs to govern a list of children.</li>
-          </ul>
-        </section>
-        <section class="col col--warn">
-          <h3>Avoid when</h3>
-          <ul>
-            <li>Exactly one answer is allowed — use radio buttons.</li>
-            <li>The change takes effect instantly on a setting screen — a switch communicates that better.</li>
-            <li>The label needs a negative: "Don't hide unread" forces two negations to be untangled.</li>
-          </ul>
-        </section>
+      <div class="demo">
+        <p class="demo__bar"><span>Живий приклад</span><span class="demo__hint">позначте частину каналів — і подивіться на верхній прапорець</span></p>
+        <div class="demo__stage">
+          <label class="check check--parent">
+            <input type="checkbox" id="notify-all"> Усі сповіщення
+          </label>
+          <div class="check-children">
+            <label class="check"><input type="checkbox" class="notify-child" checked> Відповіді на мої коментарі</label>
+            <label class="check"><input type="checkbox" class="notify-child"> Щотижневий підсумок</label>
+            <label class="check"><input type="checkbox" class="notify-child"> Новини продукту</label>
+          </div>
+        </div>
+        <p class="demo__out" id="check-out" aria-live="polite"></p>
       </div>
-
-      <figure class="code">
-        <figcaption>Markup</figcaption>
-        <pre><code>&lt;label&gt;&lt;input type="checkbox" name="notify" value="replies" checked&gt; Replies to my comments&lt;/label&gt;
-&lt;label&gt;&lt;input type="checkbox" name="notify" value="digest"&gt; Weekly summary&lt;/label&gt;</code></pre>
-      </figure>
-
-      <p class="aside"><span class="aside__tag">Convention</span> Label a checkbox with the state it
-        produces when ticked, phrased positively. The reader should be able to read the label as a sentence
-        that becomes true the moment the box is filled.</p>
     </div>
   </article>
 
   <!-- ============================================== 03 -->
-  <article class="el">
+  <article class="el" id="el-03">
     <div class="el__gutter"><span class="el__num">03</span></div>
     <div class="el__main">
-      <h2 class="el__name">Text input</h2>
-      <p class="el__def">A field that accepts typed characters — a value the interface could not have
-        offered in advance.</p>
+      <h2 class="el__name">Текстове поле</h2>
+      <p class="el__def">Поле, що приймає введені символи — значення, яке інтерфейс не міг запропонувати
+        заздалегідь.</p>
 
-      <p>Everything else on this page narrows a decision down to something the designer anticipated. A text
-        input does the opposite: it accepts a name, an address, a search term, a sentence of complaint. That
-        openness is its strength and its cost, since anything typed may be misspelled, malformed, or
-        deliberately hostile, and must therefore be validated before it is trusted.</p>
+      <p>Усе інше на цій сторінці звужує рішення до чогось, що дизайнер передбачив наперед. Текстове поле робить
+        протилежне: воно приймає ім’я, адресу, пошуковий запит, речення зі скаргою. Ця відкритість — водночас його
+        сила і його ціна: будь-що введене може містити описку, мати хибний формат або бути навмисно шкідливим, тож
+        його слід перевірити, перш ніж йому довіряти.</p>
 
-      <p>The <code>type</code> attribute is the cheapest improvement available. Setting it to
-        <code>email</code>, <code>tel</code>, <code>url</code>, <code>number</code> or <code>search</code>
-        changes the on-screen keyboard a phone offers, enables free browser validation, and tells password
-        managers and autofill what the field holds. Field width should match the expected content: a
-        postcode field as wide as a postcode is a hint delivered without a word of instruction. Anything
-        longer than a single line belongs in a <code>textarea</code>.</p>
+      <p>Поле може знати, що саме в ньому зберігається: адресу пошти, номер телефону, вебадресу чи число. Від
+        цього залежить, яку клавіатуру запропонує телефон, що підставить автозаповнення і яку перевірку виконає
+        браузер. Ширина поля теж підказує: поле для поштового індексу завширшки з сам індекс — це підказка без
+        жодного слова інструкції. Усе, що довше за один рядок, потребує багаторядкового поля.</p>
 
-      <div class="cols">
-        <section class="col">
-          <h3>Use when</h3>
-          <ul>
-            <li>The set of valid answers is unbounded or very large.</li>
-            <li>The value is personal: a name, a message, a search.</li>
-            <li>Typing is genuinely faster than choosing from a list.</li>
-          </ul>
-        </section>
-        <section class="col col--warn">
-          <h3>Avoid when</h3>
-          <ul>
-            <li>The answer comes from a fixed list — typing only invites typos.</li>
-            <li>Dates, times and quantities have purpose-built controls.</li>
-            <li>The placeholder is being used in place of a label; it disappears exactly when it is needed.</li>
-          </ul>
-        </section>
+      <div class="demo">
+        <p class="demo__bar"><span>Живий приклад</span><span class="demo__hint">введіть адресу й коментар</span></p>
+        <div class="demo__stage">
+          <div class="field">
+            <label class="field__label" for="demo-email">Адреса електронної пошти</label>
+            <input class="input" id="demo-email" type="email" autocomplete="email"
+                   placeholder="ви@example.com" aria-describedby="email-help email-status">
+            <p class="field__help" id="email-help">Писатимемо лише щодо цього замовлення.</p>
+            <p class="field__status" id="email-status" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="demo-zip">Поштовий індекс</label>
+            <input class="input input--short" id="demo-zip" inputmode="numeric" maxlength="5"
+                   autocomplete="postal-code" placeholder="79000" style="max-width:7rem">
+          </div>
+          <div class="field">
+            <label class="field__label" for="demo-note">Коментар до замовлення</label>
+            <textarea class="input" id="demo-note" maxlength="140" aria-describedby="note-help"></textarea>
+            <div class="field__row">
+              <p class="field__help" id="note-help">До 140 символів.</p>
+              <p class="field__help" id="note-count" aria-live="polite">0 / 140</p>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <figure class="code">
-        <figcaption>Markup</figcaption>
-        <pre><code>&lt;label for="email"&gt;Email address&lt;/label&gt;
-&lt;input id="email" type="email" name="email" autocomplete="email"
-       placeholder="you@example.com" required&gt;
-&lt;p id="email-help"&gt;We will only write about this order.&lt;/p&gt;</code></pre>
-      </figure>
-
-      <p class="aside"><span class="aside__tag">Principle</span> A constraint that exists should be visible
-        before it is broken. A character limit, a required format or a minimum length belongs in helper text
-        under the field, not in an error message that appears after the work has been done.</p>
     </div>
   </article>
 
   <!-- ============================================== 04 -->
-  <article class="el">
+  <article class="el" id="el-04">
     <div class="el__gutter"><span class="el__num">04</span></div>
     <div class="el__main">
-      <h2 class="el__name">Tabs</h2>
-      <p class="el__def">A row of labels over a single panel, showing one section of related content at a
-        time.</p>
+      <h2 class="el__name">Вкладки</h2>
+      <p class="el__def">Ряд назв над однією панеллю, що показує один розділ пов’язаного вмісту за раз.</p>
 
-      <p>Tabs divide material that belongs to one subject into parallel sections and reveal one of them. The
-        row of labels stays visible permanently, which is the point: it is a map of what else exists,
-        readable without scrolling and without clicking. The metaphor comes from index cards in a drawer,
-        and the implied depth — one card in front, the others immediately behind — is what makes switching
-        feel cheap rather than like navigation.</p>
+      <p>Вкладки ділять матеріал, що стосується одного предмета, на паралельні розділи й показують один із них.
+        Ряд назв видно постійно, і в цьому суть: це мапа того, що ще існує, яку можна прочитати без прокручування
+        і без кліків. Метафора походить від карток у картотечній шухляді, і саме відчуття глибини — одна картка
+        спереду, решта одразу за нею — робить перемикання легким, а не схожим на перехід деінде.</p>
 
-      <p>Because a tab switch changes only what is displayed, it must never save, submit or reload anything.
-        A reader who clicks a second tab expects to click back and find the first one exactly as they left
-        it. Labels stay to one or two words so that the whole row fits on a single line; a row that wraps,
-        or scrolls sideways, has stopped being a map.</p>
+      <p>Оскільки перемикання вкладки змінює лише те, що показано, воно нічого не зберігає, не надсилає й не
+        перезавантажує. Людина, що відкрила другу вкладку, чекає, що, повернувшись, знайде першу саме такою, якою
+        її залишила. Назви тримаються в межах одного-двох слів, щоб увесь ряд умістився в один рядок; ряд, що
+        переноситься чи прокручується вбік, перестає бути мапою.</p>
 
-      <div class="cols">
-        <section class="col">
-          <h3>Use when</h3>
-          <ul>
-            <li>Sections are siblings: equal in rank, rarely needed together.</li>
-            <li>There are between two and about six of them.</li>
-            <li>The reader benefits from seeing what else is available.</li>
-          </ul>
-        </section>
-        <section class="col col--warn">
-          <h3>Avoid when</h3>
-          <ul>
-            <li>The content must be compared side by side — tabs hide it.</li>
-            <li>The sections form a sequence; steps need a wizard with an order and a sense of progress.</li>
-            <li>Only one section really matters and the rest are filler.</li>
-          </ul>
-        </section>
+      <div class="demo">
+        <p class="demo__bar"><span>Живий приклад</span><span class="demo__hint">стрілки ← → теж перемикають вкладки</span></p>
+        <div class="demo__stage" id="tabs-demo">
+          <div class="tabs__list" role="tablist" aria-label="Відомості про рослину">
+            <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">Огляд</button>
+            <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Догляд</button>
+            <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Відгуки</button>
+          </div>
+          <div class="tabs__panel" role="tabpanel" id="p1" aria-labelledby="t1" tabindex="0">
+            <p>Монстера делікатесна — велика тропічна ліана з розсіченим листям, що добре почувається в
+              кімнаті.</p>
+            <dl class="facts">
+              <dt>Висота</dt><dd>до 2 м у приміщенні</dd>
+              <dt>Ріст</dt><dd>швидкий, 1–2 листки на місяць улітку</dd>
+              <dt>Ціна</dt><dd>420 ₴</dd>
+            </dl>
+          </div>
+          <div class="tabs__panel" role="tabpanel" id="p2" aria-labelledby="t2" tabindex="0" hidden>
+            <p>Яскраве розсіяне світло, полив після підсихання верхнього шару ґрунту, обприскування в опалювальний
+              сезон.</p>
+            <div class="field">
+              <label class="field__label" for="care-note">Ваші нотатки</label>
+              <textarea class="input" id="care-note" placeholder="Напишіть щось, перейдіть на іншу вкладку й поверніться"></textarea>
+            </div>
+          </div>
+          <div class="tabs__panel" role="tabpanel" id="p3" aria-labelledby="t3" tabindex="0" hidden>
+            <p class="review"><b>Оксана, Львів.</b> Приїхала в ідеальному стані, за місяць дала два нові листки.</p>
+            <p class="review"><b>Тарас, Київ.</b> Більша, ніж я очікував. Довелося переставити полицю.</p>
+          </div>
+        </div>
       </div>
-
-      <figure class="code">
-        <figcaption>Markup</figcaption>
-        <pre><code>&lt;div role="tablist" aria-label="Plant details"&gt;
-  &lt;button role="tab" id="t1" aria-controls="p1" aria-selected="true"&gt;Overview&lt;/button&gt;
-  &lt;button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1"&gt;Care&lt;/button&gt;
-&lt;/div&gt;
-&lt;div role="tabpanel" id="p1" aria-labelledby="t1"&gt;…&lt;/div&gt;
-&lt;div role="tabpanel" id="p2" aria-labelledby="t2" hidden&gt;…&lt;/div&gt;</code></pre>
-      </figure>
-
-      <p class="aside"><span class="aside__tag">Keyboard</span> A tab row is one stop in the tab order, not
-        one stop per tab. Arrow keys move between the labels; the Tab key jumps past the whole row to the
-        panel. This pattern is called a roving tabindex, and it is why the unselected tabs carry
-        <code>tabindex="-1"</code>.</p>
     </div>
   </article>
 
   <!-- ============================================== 05 -->
-  <article class="el">
+  <article class="el" id="el-05">
     <div class="el__gutter"><span class="el__num">05</span></div>
     <div class="el__main">
-      <h2 class="el__name">Button</h2>
-      <p class="el__def">A control that performs an action in the current context: it saves, sends,
-        calculates, deletes, opens.</p>
+      <h2 class="el__name">Кнопка</h2>
+      <p class="el__def">Елемент керування, що виконує дію в поточному контексті: зберігає, надсилає,
+        обчислює, видаляє, відкриває.</p>
 
-      <p>A button changes state rather than location. That single sentence settles nearly every argument
-        about whether something should be a button or a link. The distinction is not cosmetic: browsers
-        treat links as addresses, offering to open them in a new tab, copy them, or return to them with the
-        back button, and none of that makes sense for an action that has already happened.</p>
+      <p>Кнопка змінює стан, а не місце. Це одне речення розв’язує майже будь-яку суперечку про те, чи має щось
+        бути кнопкою, чи посиланням. Різниця не косметична: браузер ставиться до посилань як до адрес — пропонує
+        відкрити їх у новій вкладці, скопіювати чи повернутися до них кнопкою «Назад», і нічого з цього не має
+        сенсу для дії, яка вже відбулася.</p>
 
-      <p>Buttons also carry rank. Filled, outlined and plain-text buttons form a visual hierarchy, and one
-        filled button per region is enough to say what the expected move is while leaving the alternatives
-        reachable but quiet. Labels should name the action with a verb: "Save changes" still makes sense
-        read aloud out of context, whereas "OK" and "Submit" mean nothing without the sentence above them.
-        Destructive actions look different from the rest, and when they cannot be undone they ask for
-        confirmation.</p>
+      <p>Кнопки також мають ранг. Заповнені, обведені й текстові кнопки утворюють візуальну ієрархію, і однієї
+        заповненої кнопки на ділянку досить, щоб показати очікуваний крок, залишивши альтернативи досяжними, але
+        тихими. Підпис називає дію дієсловом: «Зберегти зміни» зрозуміло й поза контекстом, тоді як «OK» чи
+        «Надіслати» нічого не означають без речення над ними. Руйнівні дії виглядають інакше, ніж решта, а коли їх
+        неможливо скасувати — просять підтвердження.</p>
 
-      <div class="cols">
-        <section class="col">
-          <h3>Use when</h3>
-          <ul>
-            <li>Something happens on this page: submitting, calculating, toggling, opening a dialog.</li>
-            <li>The action needs ranking against neighbouring actions.</li>
-            <li>The result may take time and needs reporting back.</li>
-          </ul>
-        </section>
-        <section class="col col--warn">
-          <h3>Avoid when</h3>
-          <ul>
-            <li>The address changes — that is a link wearing a button's clothes.</li>
-            <li>Several filled buttons compete in one area and none reads as primary.</li>
-            <li>It is disabled with no explanation of what would enable it.</li>
-          </ul>
-        </section>
+      <div class="demo">
+        <p class="demo__bar"><span>Живий приклад</span><span class="demo__hint">змініть ім’я та спробуйте кожну кнопку</span></p>
+        <div class="demo__stage">
+          <div class="field">
+            <label class="field__label" for="profile-name">Ім’я профілю</label>
+            <input class="input" id="profile-name" value="Ганна Іваненко" autocomplete="off">
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn btn--primary" id="btn-save">Зберегти зміни</button>
+            <button type="button" class="btn btn--plain" id="btn-cancel">Скасувати</button>
+          </div>
+          <hr class="divider">
+          <div class="btn-row">
+            <button type="button" class="btn btn--danger" id="btn-delete">Видалити обліковий запис</button>
+            <div class="confirm" id="delete-confirm" hidden>
+              <span>Видалити назавжди?</span>
+              <button type="button" class="btn btn--danger-solid btn--small" id="btn-delete-yes">Так, видалити</button>
+              <button type="button" class="btn btn--small" id="btn-delete-no">Ні, залишити</button>
+            </div>
+          </div>
+        </div>
+        <p class="demo__out" id="btn-out" aria-live="polite">Змін поки немає.</p>
       </div>
-
-      <figure class="code">
-        <figcaption>Markup</figcaption>
-        <pre><code>&lt;button type="submit" class="btn btn--primary"&gt;Save changes&lt;/button&gt;
-&lt;button type="button" class="btn"&gt;Cancel&lt;/button&gt;
-&lt;button type="button" class="btn btn--danger"&gt;Delete account&lt;/button&gt;</code></pre>
-      </figure>
-
-      <p class="aside"><span class="aside__tag">Detail</span> Always set <code>type</code>. A button inside
-        a form defaults to <code>type="submit"</code>, so a "Cancel" button with no type will cheerfully
-        submit the form it was supposed to abandon.</p>
     </div>
   </article>
 
   <!-- ============================================== 06 -->
-  <article class="el">
+  <article class="el" id="el-06">
     <div class="el__gutter"><span class="el__num">06</span></div>
     <div class="el__main">
-      <h2 class="el__name">Text label</h2>
-      <p class="el__def">Static text attached to another element: the name above a field, the rule beneath
-        it, the verdict after it.</p>
+      <h2 class="el__name">Текстовий підпис</h2>
+      <p class="el__def">Статичний текст, прикріплений до іншого елемента: назва над полем, правило під ним,
+        вердикт після нього.</p>
 
-      <p>A label is the only element here that does nothing on its own. Its whole function is to give
-        meaning to something adjacent. An unlabelled field is a box whose purpose must be inferred from
-        surrounding context, and that inference fails the moment the context scrolls off the screen, or the
-        page is read by something that cannot see layout at all.</p>
+      <p>Підпис — єдиний елемент у цьому списку, що сам нічого не робить. Уся його функція — надати значення
+        чомусь поруч. Поле без підпису — це коробка, призначення якої доводиться вгадувати з оточення, і це
+        вгадування не вдається щойно контекст зникає за краєм екрана або сторінку читає щось, що взагалі не бачить
+        розміщення елементів.</p>
 
-      <p>Three kinds of text do this work. The <em>label</em> names the control. <em>Helper text</em> states
-        a rule in advance — the accepted format, the minimum length, what the value will be used for.
-        <em>Status text</em> reports afterwards what happened, and when something failed it says what to do
-        about it, because "Invalid input" tells the reader only that they have been judged. In HTML the
-        first of these is a real <code>&lt;label for="…"&gt;</code>, and the connection it makes has a
-        practical side effect: clicking the words focuses the field or ticks the box, which enlarges a small
-        target into a comfortable one.</p>
+      <p>Цю роботу виконують три види тексту. <em>Підпис</em> називає елемент. <em>Допоміжний текст</em> наперед
+        пояснює правило — формат, мінімальну довжину, мету, з якою використають значення. <em>Текст стану</em>
+        повідомляє, що сталося, а якщо щось пішло не так — що з цим робити, бо «Некоректне введення» каже лише,
+        що людину оцінили. Справжній зв’язок підпису з полем має й практичний наслідок: клік по словах переводить
+        фокус на поле чи позначає прапорець, і маленька ціль стає зручною.</p>
 
-      <div class="cols">
-        <section class="col">
-          <h3>Use when</h3>
-          <ul>
-            <li>Any input exists — there are no exceptions worth making.</li>
-            <li>A constraint should be known before it is broken.</li>
-            <li>An action has finished and its outcome needs stating.</li>
-          </ul>
-        </section>
-        <section class="col col--warn">
-          <h3>Avoid when</h3>
-          <ul>
-            <li>A placeholder is standing in for the label.</li>
-            <li>The label restates the obvious next to a clearly named field.</li>
-            <li>Required markers are used when almost everything is required — mark the optional ones instead.</li>
-          </ul>
-        </section>
+      <div class="demo">
+        <p class="demo__bar"><span>Живий приклад</span><span class="demo__hint">введіть пароль або натисніть на слова «Показати пароль»</span></p>
+        <div class="demo__stage" id="label-stage">
+          <div class="field">
+            <label class="field__label" for="demo-pass" data-kind="підпис">Новий пароль</label>
+            <input class="input" id="demo-pass" type="password" autocomplete="new-password"
+                   aria-describedby="pass-help pass-status">
+            <p class="field__help" id="pass-help" data-kind="допоміжний текст">Щонайменше 8 символів, серед них одна цифра.</p>
+            <p class="field__help" id="pass-status" data-kind="текст стану" aria-live="polite">Пароль ще не введено.</p>
+          </div>
+          <label class="check"><input type="checkbox" id="pass-show"> Показати пароль</label>
+          <hr class="divider">
+          <button type="button" class="btn btn--small" id="annotate-btn" aria-pressed="false">Підсвітити три види тексту</button>
+        </div>
       </div>
-
-      <figure class="code">
-        <figcaption>Markup</figcaption>
-        <pre><code>&lt;label for="pass"&gt;New password&lt;/label&gt;
-&lt;input id="pass" type="password" aria-describedby="pass-help"&gt;
-&lt;p id="pass-help"&gt;At least 8 characters, including one digit.&lt;/p&gt;</code></pre>
-      </figure>
-
-      <p class="aside"><span class="aside__tag">Accessibility</span> <code>for</code> must match the
-        input's <code>id</code> exactly; <code>aria-describedby</code> attaches the helper text so it is
-        read out along with the field name rather than skipped.</p>
     </div>
   </article>
 
   <!-- ============================================== 07 -->
-  <article class="el">
+  <article class="el" id="el-07">
     <div class="el__gutter"><span class="el__num">07</span></div>
     <div class="el__main">
-      <h2 class="el__name">Link</h2>
-      <p class="el__def">Text or an image pointing at an address — another page, a place on this page, a
-        file, an email client.</p>
+      <h2 class="el__name">Посилання</h2>
+      <p class="el__def">Текст або зображення, що вказує на адресу — іншу сторінку, місце на цій сторінці,
+        файл, поштовий клієнт.</p>
 
-      <p>The link is the oldest element on this list and the one the web was built around. It changes
-        location rather than state. Everything the browser gives a reader for free follows from that:
-        opening in a new tab, copying the address, bookmarking it, going back. Rebuilding a link out of a
-        div and a click handler throws all of it away.</p>
+      <p>Посилання — найстаріший елемент у цьому списку і той, довкола якого збудовано весь веб. Воно змінює
+        місце, а не стан. Усе, що браузер дає читачеві безкоштовно, випливає саме звідси: відкриття в новій
+        вкладці, копіювання адреси, закладки, повернення назад.</p>
 
-      <p>Link text should describe its destination well enough to survive being removed from the sentence,
-        because assistive software can list every link on a page in isolation, and a list of twelve items
-        all reading "click here" is worthless. Underlines matter for the same kind of reason: colour alone
-        disappears in greyscale printing and for readers who cannot distinguish the hues used. The visited
-        state, often stripped out for tidiness, quietly tells a reader which of a long list of results they
-        have already tried.</p>
+      <p>Текст посилання описує місце призначення настільки добре, щоб пережити вилучення з речення, бо допоміжні
+        програми можуть перелічити всі посилання сторінки окремо, і список із дванадцяти пунктів «натисніть тут»
+        нічого не вартий. Підкреслення важить з тієї ж причини: сам лише колір зникає під час чорно-білого друку і
+        для людей, що не розрізняють використані відтінки. Стан «відвідано», який часто прибирають заради охайності,
+        тихо підказує, які з довгого списку результатів людина вже переглянула.</p>
 
-      <div class="cols">
-        <section class="col">
-          <h3>Use when</h3>
-          <ul>
-            <li>The destination is a different page, document or position.</li>
-            <li>A file should be downloaded rather than opened.</li>
-            <li>The reader may want the address itself, to share or return to.</li>
+      <div class="demo">
+        <p class="demo__bar"><span>Живий приклад</span><span class="demo__hint">наведіть вказівник — внизу з’явиться адреса</span></p>
+        <div class="demo__stage">
+          <ul class="linklist" id="links-demo">
+            <li><span class="linklist__kind">на цій сторінці</span>
+              <a href="#el-10">Перейти до таблиці даних</a></li>
+            <li><span class="linklist__kind">на цій сторінці</span>
+              <a href="#top">Повернутися на початок довідника</a></li>
+            <li><span class="linklist__kind">інший сайт</span>
+              <a href="https://example.org" target="_blank" rel="noopener noreferrer">Відкрити example.org <span class="ext" aria-hidden="true">↗</span><span class="visually-hidden"> (нова вкладка)</span></a></li>
+            <li><span class="linklist__kind">поштовий клієнт</span>
+              <a href="mailto:hello@example.org">Написати на hello@example.org</a></li>
           </ul>
-        </section>
-        <section class="col col--warn">
-          <h3>Avoid when</h3>
-          <ul>
-            <li>Nothing is navigated to and the action happens here — that is a button.</li>
-            <li>The text says "here", "this" or "more".</li>
-            <li>A new tab is opened silently, taking the back button away without warning.</li>
-          </ul>
-        </section>
+        </div>
+        <p class="demo__out" id="links-out" aria-live="polite">Наведіть вказівник на посилання або перейдіть до нього клавішею Tab.</p>
       </div>
-
-      <figure class="code">
-        <figcaption>Markup</figcaption>
-        <pre><code>&lt;a href="/shipping"&gt;Read the shipping policy&lt;/a&gt;
-&lt;a href="#grid"&gt;Jump to the data grid&lt;/a&gt;
-&lt;a href="report.pdf" download&gt;Download the report&lt;/a&gt;
-&lt;a href="https://example.org" target="_blank" rel="noopener noreferrer"&gt;Example (new tab)&lt;/a&gt;</code></pre>
-      </figure>
-
-      <p class="aside"><span class="aside__tag">Security</span> <code>rel="noopener noreferrer"</code>
-        belongs on every link that opens a new tab. Without it the opened page keeps a reference back to
-        yours and can redirect it.</p>
     </div>
   </article>
 
   <!-- ============================================== 08 -->
-  <article class="el">
+  <article class="el" id="el-08">
     <div class="el__gutter"><span class="el__num">08</span></div>
     <div class="el__main">
-      <h2 class="el__name">Tooltip</h2>
-      <p class="el__def">A brief explanation that appears when an element is pointed at or focused, and
-        vanishes when attention moves on.</p>
+      <h2 class="el__name">Спливна підказка</h2>
+      <p class="el__def">Коротке пояснення, що з’являється, коли на елемент наводять вказівник або переводять
+        фокус, і зникає, щойно увага переходить деінде.</p>
 
-      <p>A tooltip buys space. The interface stays short for the people who already know what they are
-        doing, and the explanation waits for whoever wants it. It is progressive disclosure at its smallest
-        scale: one line, one element, no commitment.</p>
+      <p>Підказка заощаджує місце. Інтерфейс лишається стислим для тих, хто вже знає, що робить, а пояснення
+        чекає на того, кому воно потрібне. Це поступове розкриття інформації в найменшому масштабі: один рядок,
+        один елемент, жодних зобов’язань.</p>
 
-      <p>Its weaknesses all follow from the same fact — it is not there by default. It cannot be reached by
-        touch in the ordinary way, it never appears in print, and a reader skimming quickly will not know it
-        exists. Nothing essential can therefore live inside one. A tooltip names an icon-only button,
-        expands an abbreviation, or defines a term of art; it does not hold instructions, error messages, or
-        the rule that would have prevented a mistake.</p>
+      <p>Усі її слабкі місця випливають з одного факту — за замовчуванням її немає. До неї важко дістатися
+        дотиком, вона ніколи не потрапляє на друк, а людина, що швидко переглядає сторінку, навіть не знатиме, що
+        вона існує. Тому нічого суттєвого в ній не живе. Підказка називає кнопку-значок, розшифровує скорочення
+        або визначає фаховий термін — і на цьому її робота закінчується.</p>
 
-      <div class="cols">
-        <section class="col">
-          <h3>Use when</h3>
-          <ul>
-            <li>An icon-only control needs a name.</li>
-            <li>A term or abbreviation needs one line of definition.</li>
-            <li>The information is genuinely optional.</li>
-          </ul>
-        </section>
-        <section class="col col--warn">
-          <h3>Avoid when</h3>
-          <ul>
-            <li>The content runs longer than a line — use helper text or a panel.</li>
-            <li>It contains something interactive; a tooltip cannot reliably be moved into.</li>
-            <li>It appears only on hover, making it invisible to keyboard and touch.</li>
-          </ul>
-        </section>
+      <div class="demo">
+        <p class="demo__bar"><span>Живий приклад</span><span class="demo__hint">наведіть, перейдіть клавішею Tab або торкніться; Esc ховає підказку</span></p>
+        <div class="demo__stage demo__stage--roomy">
+          <div class="toolbar" role="toolbar" aria-label="Дії з листом">
+            <span class="tip">
+              <button type="button" class="icon-btn" aria-labelledby="tip-archive">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8M10 12h4"/></svg>
+              </button>
+              <span class="bubble" role="tooltip" id="tip-archive">Перемістити в архів</span>
+            </span>
+            <span class="tip">
+              <button type="button" class="icon-btn" aria-labelledby="tip-star">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>
+              </button>
+              <span class="bubble" role="tooltip" id="tip-star">Позначити як важливий</span>
+            </span>
+            <span class="tip">
+              <button type="button" class="icon-btn" aria-labelledby="tip-share">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="6" cy="12" r="2.2"/><circle cx="18" cy="6" r="2.2"/><circle cx="18" cy="18" r="2.2"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+              </button>
+              <span class="bubble" role="tooltip" id="tip-share">Поділитися</span>
+            </span>
+            <span class="tip">
+              <button type="button" class="icon-btn" aria-labelledby="tip-trash">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></svg>
+              </button>
+              <span class="bubble" role="tooltip" id="tip-trash">Видалити лист</span>
+            </span>
+          </div>
+          <p class="tip-sentence">Ціну вказано з урахуванням
+            <span class="tip"><span class="abbr" tabindex="0" aria-describedby="tip-vat">ПДВ</span><span class="bubble" role="tooltip" id="tip-vat">Податок на додану вартість</span></span>.
+          </p>
+        </div>
+        <p class="demo__out" id="tip-out" aria-live="polite">Жодної дії ще не виконано.</p>
       </div>
-
-      <figure class="code">
-        <figcaption>Markup and behaviour</figcaption>
-        <pre><code>&lt;button aria-label="Archive" aria-describedby="tip-archive"&gt;▤&lt;/button&gt;
-&lt;span role="tooltip" id="tip-archive"&gt;Move to the archive&lt;/span&gt;
-
-/* revealed on pointer and on keyboard focus, never on hover alone */
-.tip:hover .bubble,
-.tip:focus-visible .bubble { opacity: 1; visibility: visible; }</code></pre>
-      </figure>
-
-      <p class="aside"><span class="aside__tag">Distinction</span> The browser's own
-        <code>title</code> attribute looks like a tooltip but is not a substitute: it is slow to appear,
-        cannot be styled, and is skipped by much assistive software.</p>
     </div>
   </article>
 
   <!-- ============================================== 09 -->
-  <article class="el">
+  <article class="el" id="el-09">
     <div class="el__gutter"><span class="el__num">09</span></div>
     <div class="el__main">
-      <h2 class="el__name">Dropdown list</h2>
-      <p class="el__def">A collapsed list that opens to reveal its options and closes once one is chosen.</p>
+      <h2 class="el__name">Випадний список</h2>
+      <p class="el__def">Згорнутий список, що розкривається, показуючи варіанти, і закривається, щойно один
+        із них обрано.</p>
 
-      <p>A dropdown does the same job as a group of radio buttons — one answer out of many — but keeps the
-        options hidden until asked for. It trades visibility for space, and that trade becomes worthwhile
-        once the list is long enough that showing it in full would drown everything around it. The cost is
-        real: an option nobody opens the list to see may as well not exist, which is why a dropdown is a
-        poor place for anything the reader needs to be persuaded by.</p>
+      <p>Випадний список виконує ту саму роботу, що й група радіокнопок — одна відповідь із багатьох, — але
+        ховає варіанти, доки їх не попросять. Він міняє видимість на місце, і ця угода стає вигідною, коли список
+        настільки довгий, що, показаний повністю, затопив би все довкола. Ціна реальна: варіант, якого ніхто не
+        побачив, бо не розкрив список, ніби й не існує.</p>
 
-      <p>Order carries meaning. Alphabetical order suits names and countries; frequency order suits lists
-        with obvious favourites; chronological order suits years. Related options can be gathered under
-        headings with <code>optgroup</code> so a long list can be skimmed by group rather than read line by
-        line. The native control is worth defending against custom replacements, because an operating
-        system already renders it as a full-height picker on a phone, allows typing to jump to an entry, and
-        handles keyboard and screen-reader behaviour that a rebuilt version has to reimplement in full.</p>
+      <p>Порядок пунктів несе значення. Алфавітний пасує до імен і країн, порядок за частотою — до списків з
+        очевидними фаворитами, хронологічний — до років. Пов’язані варіанти можна зібрати під заголовками, щоб
+        довгий список переглядали групами, а не рядок за рядком. Рідний системний елемент варто берегти від
+        саморобних замінників: на телефоні операційна система вже показує його як зручний повноекранний вибір,
+        дозволяє набрати перші літери, щоб перескочити до потрібного пункту, і бере на себе роботу з клавіатурою
+        та програмами зчитування екрана.</p>
 
-      <div class="cols">
-        <section class="col">
-          <h3>Use when</h3>
-          <ul>
-            <li>There are more than about six options.</li>
-            <li>The options are self-explanatory and need no comparison.</li>
-            <li>Vertical space is scarce and the field is one of many.</li>
-          </ul>
-        </section>
-        <section class="col col--warn">
-          <h3>Avoid when</h3>
-          <ul>
-            <li>There are two or three options — show them as radio buttons.</li>
-            <li>Several answers are allowed; checkboxes beat a list that demands a modifier key.</li>
-            <li>The list is enormous; a searchable field with suggestions serves better.</li>
-          </ul>
-        </section>
+      <div class="demo">
+        <p class="demo__bar"><span>Живий приклад</span><span class="demo__hint">розкрийте список — варіанти згруповано</span></p>
+        <div class="demo__stage">
+          <div class="field">
+            <label class="field__label" for="demo-cat">Категорія рослин</label>
+            <select class="input" id="demo-cat">
+              <optgroup label="Кімнатні">
+                <option value="foliage">Декоративнолистяні</option>
+                <option value="succulents" selected>Сукуленти</option>
+                <option value="flowering">Квітучі</option>
+                <option value="ferns">Папороті</option>
+              </optgroup>
+              <optgroup label="Садові">
+                <option value="shrubs">Кущі</option>
+                <option value="perennials">Багаторічники</option>
+                <option value="conifers">Хвойні</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="demo-city">Місто доставки</label>
+            <select class="input" id="demo-city">
+              <option>Вінниця</option>
+              <option>Дніпро</option>
+              <option>Житомир</option>
+              <option>Київ</option>
+              <option selected>Львів</option>
+              <option>Одеса</option>
+              <option>Полтава</option>
+              <option>Ужгород</option>
+              <option>Харків</option>
+              <option>Чернігів</option>
+            </select>
+          </div>
+        </div>
+        <p class="demo__out" id="select-out" aria-live="polite"></p>
       </div>
-
-      <figure class="code">
-        <figcaption>Markup</figcaption>
-        <pre><code>&lt;label for="cat"&gt;Category&lt;/label&gt;
-&lt;select id="cat" name="cat"&gt;
-  &lt;optgroup label="Indoor"&gt;
-    &lt;option value="foliage"&gt;Foliage&lt;/option&gt;
-    &lt;option value="succulents"&gt;Succulents&lt;/option&gt;
-  &lt;/optgroup&gt;
-  &lt;optgroup label="Outdoor"&gt;
-    &lt;option value="shrubs"&gt;Shrubs&lt;/option&gt;
-  &lt;/optgroup&gt;
-&lt;/select&gt;</code></pre>
-      </figure>
-
-      <p class="aside"><span class="aside__tag">Terminology</span> "Dropdown" is used loosely for three
-        different things: this select control, a navigation menu that opens on hover, and a combo box that
-        filters as you type. Only the first is a form field, and only the first submits a value.</p>
     </div>
   </article>
 
   <!-- ============================================== 10 -->
-  <article class="el">
+  <article class="el" id="el-10">
     <div class="el__gutter"><span class="el__num">10</span></div>
     <div class="el__main">
-      <h2 class="el__name">Data grid</h2>
-      <p class="el__def">Records laid out in rows and their attributes in columns, with tools for sorting,
-        filtering and selecting.</p>
+      <h2 class="el__name">Таблиця даних</h2>
+      <p class="el__def">Записи, розкладені рядками, а їхні властивості — стовпцями, з інструментами
+        сортування, фільтрування та вибору.</p>
 
-      <p>A grid exists so that the eye can run down one column and compare like with like. Everything about
-        its formatting serves that: numbers aligned to the right in a single format so digits line up by
-        place value, one row per record with no merged cells, and column headers that stay readable while
-        the body scrolls. A table becomes a grid when the tools arrive on top — sorting by column, filtering
-        by value, selecting rows and acting on the selection at once.</p>
+      <p>Таблиця існує для того, щоб око могло пробігти один стовпець і порівняти подібне з подібним. Усе в її
+        форматуванні служить цьому: числа вирівняно праворуч і подано в одному форматі, щоб розряди стояли один
+        під одним; один рядок на запис без об’єднаних клітинок; заголовки стовпців лишаються на місці, поки тіло
+        таблиці прокручується. Звичайна таблиця стає таблицею даних, коли поверх неї з’являються інструменти —
+        сортування за стовпцем, фільтрування за значенням, вибір рядків і дія над усім вибраним одразу.</p>
 
-      <p>Those tools must report their own state, or the reader loses their place. A sorted column says
-        which direction it is sorted in; a filter says how many rows it is hiding; a selection says how many
-        rows it holds, and whether the total spans pages that are not visible. Beneath the tools there
-        should still be an ordinary HTML table: rows, cells, and real <code>&lt;th&gt;</code> headers scoped
-        to their column, since that structure is what allows a screen reader to announce "City, Lviv"
-        instead of reading a wall of loose values.</p>
+      <p>Ці інструменти мусять повідомляти власний стан, інакше людина губиться. Відсортований стовпець показує
+        напрямок сортування; фільтр — скільки рядків він ховає; вибір — скільки рядків у ньому і чи охоплює він
+        записи, яких зараз не видно. Під усіма інструментами все одно лежить звичайна таблиця з рядками,
+        клітинками й справжніми заголовками — саме ця структура дає програмі зчитування екрана оголосити «Місто,
+        Львів», а не читати стіну розрізнених значень.</p>
 
-      <div class="cols">
-        <section class="col">
-          <h3>Use when</h3>
-          <ul>
-            <li>Records share the same fields and must be compared.</li>
-            <li>The number of rows is unknown in advance.</li>
-            <li>Bulk actions apply to a chosen subset.</li>
-          </ul>
-        </section>
-        <section class="col col--warn">
-          <h3>Avoid when</h3>
-          <ul>
-            <li>There are only a handful of items with one attribute each — a list is lighter.</li>
-            <li>Layout is the only reason for the table; that is a job for CSS.</li>
-            <li>Every column is shown at once on a phone, where a card per record reads better.</li>
-          </ul>
-        </section>
+      <div class="demo">
+        <p class="demo__bar"><span>Живий приклад</span><span class="demo__hint">сортуйте, фільтруйте, обирайте рядки</span></p>
+        <div class="demo__stage">
+          <div class="grid-tools">
+            <input class="input" id="grid-filter" type="search" placeholder="Фільтр: клієнт або місто"
+                   aria-label="Фільтр за клієнтом або містом">
+            <button type="button" class="btn btn--primary btn--small" id="grid-bulk" disabled>Позначити як надіслані</button>
+          </div>
+          <div class="grid-wrap">
+            <table class="grid" id="grid">
+              <caption class="visually-hidden">Останні замовлення</caption>
+              <thead>
+                <tr>
+                  <th scope="col" class="cell-check"><input type="checkbox" id="grid-all" aria-label="Обрати всі видимі рядки"></th>
+                  <th scope="col" data-key="name"><button type="button" class="sort-btn">Клієнт <span class="sort-ind" aria-hidden="true"></span></button></th>
+                  <th scope="col" data-key="city"><button type="button" class="sort-btn">Місто <span class="sort-ind" aria-hidden="true"></span></button></th>
+                  <th scope="col" data-key="date"><button type="button" class="sort-btn">Дата <span class="sort-ind" aria-hidden="true"></span></button></th>
+                  <th scope="col" data-key="sum" class="num"><button type="button" class="sort-btn">Сума, ₴ <span class="sort-ind" aria-hidden="true"></span></button></th>
+                  <th scope="col">Статус</th>
+                </tr>
+              </thead>
+              <tbody id="grid-body"></tbody>
+            </table>
+          </div>
+        </div>
+        <p class="demo__out" id="grid-out" aria-live="polite"></p>
       </div>
-
-      <figure class="code">
-        <figcaption>Markup</figcaption>
-        <pre><code>&lt;table&gt;
-  &lt;caption&gt;Recent orders&lt;/caption&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th scope="col" aria-sort="ascending"&gt;Customer&lt;/th&gt;
-      &lt;th scope="col"&gt;City&lt;/th&gt;
-      &lt;th scope="col"&gt;Total&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;&lt;td&gt;Anna Kovalenko&lt;/td&gt;&lt;td&gt;Kyiv&lt;/td&gt;&lt;td&gt;1 240&lt;/td&gt;&lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;</code></pre>
-      </figure>
-
-      <p class="aside"><span class="aside__tag">Accessibility</span> <code>scope</code> binds a header to
-        its column or row, and <code>aria-sort</code> states the current sort direction. A
-        <code>caption</code> gives the table a name, which is what lets a reader skip it or enter it
-        deliberately.</p>
     </div>
   </article>
 
-  <!-- ============================================== SUMMARY -->
+  <!-- ============================================== ПІДСУМОК -->
   <section class="summary">
-    <h2>The ten at a glance</h2>
-    <p class="summary__lede">Each element answers one question. Naming that question is usually enough to
-      settle which element belongs in a given place.</p>
+    <h2>Усі десять одним поглядом</h2>
+    <p class="summary__lede">Кожен елемент відповідає на одне запитання. Ось вони поруч — назва веде до
+      відповідного розділу.</p>
 
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Element</th>
-          <th scope="col">Question it answers</th>
-          <th scope="col">Typical mistake</th>
+          <th scope="col">Елемент</th>
+          <th scope="col">Запитання, на яке він відповідає</th>
         </tr>
       </thead>
       <tbody>
-        <tr><th scope="row">Radio button</th><td>Which one of these?</td><td>Used for a long list</td></tr>
-        <tr><th scope="row">Checkbox</th><td>Is this true?</td><td>Used where answers exclude each other</td></tr>
-        <tr><th scope="row">Text input</th><td>What exactly?</td><td>Placeholder used as the label</td></tr>
-        <tr><th scope="row">Tabs</th><td>Which section?</td><td>Used for ordered steps</td></tr>
-        <tr><th scope="row">Button</th><td>Do it now.</td><td>Used to navigate somewhere</td></tr>
-        <tr><th scope="row">Text label</th><td>What is this?</td><td>Omitted, or not tied to its control</td></tr>
-        <tr><th scope="row">Link</th><td>Where else?</td><td>Text that says "click here"</td></tr>
-        <tr><th scope="row">Tooltip</th><td>What does that mean?</td><td>Holds something essential</td></tr>
-        <tr><th scope="row">Dropdown list</th><td>Which one, from many?</td><td>Used for two options</td></tr>
-        <tr><th scope="row">Data grid</th><td>How do these compare?</td><td>Used purely for layout</td></tr>
+        <tr><th scope="row"><a href="#el-01">Радіокнопка</a></th><td>Котрий із цих?</td></tr>
+        <tr><th scope="row"><a href="#el-02">Прапорець</a></th><td>Чи це правда?</td></tr>
+        <tr><th scope="row"><a href="#el-03">Текстове поле</a></th><td>Що саме?</td></tr>
+        <tr><th scope="row"><a href="#el-04">Вкладки</a></th><td>Який розділ?</td></tr>
+        <tr><th scope="row"><a href="#el-05">Кнопка</a></th><td>Зроби це зараз.</td></tr>
+        <tr><th scope="row"><a href="#el-06">Текстовий підпис</a></th><td>Що це таке?</td></tr>
+        <tr><th scope="row"><a href="#el-07">Посилання</a></th><td>Куди ще?</td></tr>
+        <tr><th scope="row"><a href="#el-08">Спливна підказка</a></th><td>Що це означає?</td></tr>
+        <tr><th scope="row"><a href="#el-09">Випадний список</a></th><td>Котрий — із багатьох?</td></tr>
+        <tr><th scope="row"><a href="#el-10">Таблиця даних</a></th><td>Як вони порівнюються?</td></tr>
       </tbody>
     </table>
-
-    <h3 class="summary__h3">Three decisions that cover most cases</h3>
-    <dl class="pairs">
-      <dt>Radio buttons or a dropdown</dt>
-      <dd>Both take exactly one answer. Show the options when there are few and their wording matters; fold
-        them away when the list is long and the options speak for themselves.</dd>
-      <dt>Radio buttons or checkboxes</dt>
-      <dd>Ask whether two answers could be true at the same time. If they could, the shapes are square.</dd>
-      <dt>A button or a link</dt>
-      <dd>Ask whether the address changes. Something that happens here is a button; somewhere else to be is
-        a link.</dd>
-    </dl>
   </section>
 </main>
 
 <footer class="colophon">
-  <div class="wrap"></div>
+  <div class="wrap">
+    <p>Усі приклади на цій сторінці живі: їх можна натискати, заповнювати й перемикати. Жодні дані нікуди не
+      надсилаються.</p>
+  </div>
 </footer>
+
+<style>
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  function setStatus(el, kind, text) {
+    el.textContent = text;
+    el.classList.toggle('is-ok', kind === 'ok');
+    el.classList.toggle('is-bad', kind === 'bad');
+  }
+
+  /* ---------- 01 Радіокнопка ---------- */
+  var radioSet = document.getElementById('radio-demo');
+  var radioOut = document.getElementById('radio-out');
+  function updateRadio() {
+    var c = radioSet.querySelector('input:checked');
+    radioOut.textContent = 'Обрано: ' + c.dataset.label + '. Вартість доставки — ' + c.dataset.price + '.';
+  }
+  radioSet.addEventListener('change', updateRadio);
+  updateRadio();
+
+  /* ---------- 02 Прапорець ---------- */
+  var parent = document.getElementById('notify-all');
+  var kids = Array.prototype.slice.call(document.querySelectorAll('.notify-child'));
+  var checkOut = document.getElementById('check-out');
+  function updateParent() {
+    var n = kids.filter(function (k) { return k.checked; }).length;
+    parent.checked = n === kids.length;
+    parent.indeterminate = n > 0 && n < kids.length;
+    var state = parent.indeterminate ? 'невизначений (позначено частину)'
+              : parent.checked ? 'позначено' : 'не позначено';
+    checkOut.textContent = 'Увімкнено каналів: ' + n + ' з ' + kids.length +
+      '. Верхній прапорець: ' + state + '.';
+  }
+  parent.addEventListener('change', function () {
+    kids.forEach(function (k) { k.checked = parent.checked; });
+    updateParent();
+  });
+  kids.forEach(function (k) { k.addEventListener('change', updateParent); });
+  updateParent();
+
+  /* ---------- 03 Текстове поле ---------- */
+  var email = document.getElementById('demo-email');
+  var emailStatus = document.getElementById('email-status');
+  email.addEventListener('input', function () {
+    var v = email.value.trim();
+    if (!v) { setStatus(emailStatus, '', ''); email.removeAttribute('aria-invalid'); return; }
+    if (email.validity.valid && /@[^@]+\.[^@]+$/.test(v)) {
+      setStatus(emailStatus, 'ok', '✓ Адреса має правильний формат.');
+      email.removeAttribute('aria-invalid');
+    } else {
+      setStatus(emailStatus, 'bad', v.indexOf('@') === -1
+        ? 'Бракує символу «@» — наприклад, ivan@example.com.'
+        : 'Перевірте частину після «@»: там має бути домен, наприклад example.com.');
+      email.setAttribute('aria-invalid', 'true');
+    }
+  });
+
+  var zip = document.getElementById('demo-zip');
+  zip.addEventListener('input', function () { zip.value = zip.value.replace(/\D/g, ''); });
+
+  var note = document.getElementById('demo-note');
+  var noteCount = document.getElementById('note-count');
+  note.addEventListener('input', function () {
+    var len = note.value.length;
+    noteCount.textContent = len + ' / 140';
+    noteCount.classList.toggle('is-bad', len >= 120);
+  });
+
+  /* ---------- 04 Вкладки ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('#tabs-demo [role="tab"]'));
+  function selectTab(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { selectTab(tab); });
+    tab.addEventListener('keydown', function (e) {
+      var j = null;
+      if (e.key === 'ArrowRight') j = (i + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft') j = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') j = 0;
+      else if (e.key === 'End') j = tabs.length - 1;
+      if (j !== null) { e.preventDefault(); selectTab(tabs[j], true); }
+    });
+  });
+
+  /* ---------- 05 Кнопка ---------- */
+  var nameIn = document.getElementById('profile-name');
+  var saved = nameIn.value;
+  var btnSave = document.getElementById('btn-save');
+  var btnCancel = document.getElementById('btn-cancel');
+  var btnDelete = document.getElementById('btn-delete');
+  var confirmBox = document.getElementById('delete-confirm');
+  var btnYes = document.getElementById('btn-delete-yes');
+  var btnNo = document.getElementById('btn-delete-no');
+  var btnOut = document.getElementById('btn-out');
+
+  btnSave.addEventListener('click', function () {
+    var v = nameIn.value.trim();
+    if (!v) { btnOut.textContent = 'Ім’я не може бути порожнім — зберігати нічого.'; nameIn.focus(); return; }
+    if (v === saved) { btnOut.textContent = 'Змін немає — ім’я вже збережено як «' + saved + '».'; return; }
+    btnSave.disabled = true;
+    btnSave.classList.add('is-busy');
+    btnSave.textContent = 'Зберігаю…';
+    btnOut.textContent = 'Зберігаю зміни…';
+    setTimeout(function () {
+      saved = v;
+      nameIn.value = v;
+      btnSave.disabled = false;
+      btnSave.classList.remove('is-busy');
+      btnSave.textContent = 'Зберегти зміни';
+      btnOut.textContent = '✓ Збережено: ім’я профілю тепер «' + saved + '».';
+    }, 900);
+  });
+  btnCancel.addEventListener('click', function () {
+    var changed = nameIn.value !== saved;
+    nameIn.value = saved;
+    btnOut.textContent = changed ? 'Зміни скасовано, повернуто «' + saved + '».' : 'Скасовувати нічого — змін не було.';
+  });
+  btnDelete.addEventListener('click', function () {
+    btnDelete.hidden = true;
+    confirmBox.hidden = false;
+    btnNo.focus();
+    btnOut.textContent = 'Цю дію неможливо скасувати, тому потрібне підтвердження.';
+  });
+  btnNo.addEventListener('click', function () {
+    confirmBox.hidden = true;
+    btnDelete.hidden = false;
+    btnDelete.focus();
+    btnOut.textContent = 'Видалення скасовано. Обліковий запис на місці.';
+  });
+  btnYes.addEventListener('click', function () {
+    confirmBox.hidden = true;
+    btnDelete.hidden = false;
+    btnDelete.focus();
+    btnOut.textContent = 'Обліковий запис «видалено». Це лише приклад — насправді нічого не сталося.';
+  });
+
+  /* ---------- 06 Текстовий підпис ---------- */
+  var pass = document.getElementById('demo-pass');
+  var passStatus = document.getElementById('pass-status');
+  var passShow = document.getElementById('pass-show');
+  pass.addEventListener('input', function () {
+    var v = pass.value;
+    if (!v) { setStatus(passStatus, '', 'Пароль ще не введено.'); pass.removeAttribute('aria-invalid'); return; }
+    var todo = [];
+    if (v.length < 8) todo.push('додайте ще ' + (8 - v.length) + ' симв.');
+    if (!/\d/.test(v)) todo.push('додайте хоча б одну цифру');
+    if (todo.length) {
+      var msg = todo.join(' і ');
+      setStatus(passStatus, 'bad', 'Майже: ' + msg + '.');
+      pass.setAttribute('aria-invalid', 'true');
+    } else {
+      setStatus(passStatus, 'ok', '✓ Пароль відповідає вимогам.');
+      pass.removeAttribute('aria-invalid');
+    }
+  });
+  passShow.addEventListener('change', function () {
+    pass.type = passShow.checked ? 'text' : 'password';
+  });
+  var annotateBtn = document.getElementById('annotate-btn');
+  var labelStage = document.getElementById('label-stage');
+  annotateBtn.addEventListener('click', function () {
+    var on = labelStage.classList.toggle('is-annotated');
+    annotateBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    annotateBtn.textContent = on ? 'Сховати позначки' : 'Підсвітити три види тексту';
+  });
+
+  /* ---------- 07 Посилання ---------- */
+  var linksOut = document.getElementById('links-out');
+  Array.prototype.forEach.call(document.querySelectorAll('#links-demo a'), function (a) {
+    function show() {
+      var where = a.target === '_blank' ? ' — відкриється в новій вкладці' : '';
+      linksOut.textContent = 'Адреса: ' + a.href + where;
+    }
+    a.addEventListener('mouseenter', show);
+    a.addEventListener('focus', show);
+  });
+
+  /* ---------- 08 Спливна підказка ---------- */
+  var tipOut = document.getElementById('tip-out');
+  var tipEls = Array.prototype.slice.call(document.querySelectorAll('.tip'));
+  tipEls.forEach(function (tip) {
+    var trigger = tip.firstElementChild;
+    var bubble = tip.querySelector('.bubble');
+    var timer;
+    function reset() { tip.classList.remove('is-dismissed'); }
+    tip.addEventListener('mouseleave', reset);
+    trigger.addEventListener('blur', function () { reset(); tip.classList.remove('is-open'); });
+    trigger.addEventListener('click', function () {
+      tip.classList.remove('is-dismissed');
+      tip.classList.add('is-open');
+      clearTimeout(timer);
+      timer = setTimeout(function () { tip.classList.remove('is-open'); }, 1800);
+      if (trigger.tagName === 'BUTTON') tipOut.textContent = 'Виконано дію: «' + bubble.textContent + '».';
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      tipEls.forEach(function (t) { t.classList.remove('is-open'); t.classList.add('is-dismissed'); });
+    }
+  });
+
+  /* ---------- 09 Випадний список ---------- */
+  var cat = document.getElementById('demo-cat');
+  var city = document.getElementById('demo-city');
+  var selectOut = document.getElementById('select-out');
+  function updateSelect() {
+    var opt = cat.options[cat.selectedIndex];
+    selectOut.textContent = 'Категорія: ' + opt.text + ' (група «' + opt.parentNode.label +
+      '»). Доставка: ' + city.value + '.';
+  }
+  cat.addEventListener('change', updateSelect);
+  city.addEventListener('change', updateSelect);
+  updateSelect();
+
+  /* ---------- 10 Таблиця даних ---------- */
+  var data = [
+    { id: 1,  name: 'Анна Коваленко',  city: 'Київ',    date: '2026-09-14', sum: 1240, sent: false },
+    { id: 2,  name: 'Богдан Мельник',  city: 'Львів',   date: '2026-09-21', sum: 860,  sent: true  },
+    { id: 3,  name: 'Віра Шевчук',     city: 'Одеса',   date: '2026-09-03', sum: 3415, sent: false },
+    { id: 4,  name: 'Григорій Бондар', city: 'Харків',  date: '2026-09-28', sum: 520,  sent: false },
+    { id: 5,  name: 'Дарина Ткаченко', city: 'Львів',   date: '2026-10-01', sum: 2075, sent: true  },
+    { id: 6,  name: 'Євген Кравчук',   city: 'Дніпро',  date: '2026-09-17', sum: 1490, sent: false },
+    { id: 7,  name: 'Жанна Олійник',   city: 'Київ',    date: '2026-10-04', sum: 310,  sent: false },
+    { id: 8,  name: 'Зіновій Лисенко', city: 'Житомир', date: '2026-09-09', sum: 4980, sent: true  },
+    { id: 9,  name: 'Ірина Савченко',  city: 'Ужгород', date: '2026-09-25', sum: 1125, sent: false },
+    { id: 10, name: 'Карина Поліщук',  city: 'Львів',   date: '2026-09-30', sum: 695,  sent: false }
+  ];
+  var colNames = { name: 'Клієнт', city: 'Місто', date: 'Дата', sum: 'Сума' };
+  var sort = { key: 'date', dir: 'desc' };
+  var selected = {};
+  var visible = [];
+
+  var gridBody = document.getElementById('grid-body');
+  var gridFilter = document.getElementById('grid-filter');
+  var gridAll = document.getElementById('grid-all');
+  var gridBulk = document.getElementById('grid-bulk');
+  var gridOut = document.getElementById('grid-out');
+  var sortHeads = Array.prototype.slice.call(document.querySelectorAll('#grid thead th[data-key]'));
+
+  function fmtSum(n) { return n.toLocaleString('uk-UA'); }
+  function fmtDate(s) { var p = s.split('-'); return p[2] + '.' + p[1] + '.' + p[0]; }
+  function countSelected() { return Object.keys(selected).length; }
+
+  function renderRows() {
+    var q = gridFilter.value.trim().toLowerCase();
+    visible = data.filter(function (r) {
+      return !q || r.name.toLowerCase().indexOf(q) !== -1 || r.city.toLowerCase().indexOf(q) !== -1;
+    });
+    visible.sort(function (a, b) {
+      var x = a[sort.key], y = b[sort.key];
+      var c = typeof x === 'number' ? x - y : String(x).localeCompare(String(y), 'uk');
+      return sort.dir === 'asc' ? c : -c;
+    });
+
+    if (!visible.length) {
+      gridBody.innerHTML = '<tr><td colspan="6" class="grid-empty">Жоден запис не відповідає фільтру.</td></tr>';
+    } else {
+      gridBody.innerHTML = visible.map(function (r) {
+        var on = !!selected[r.id];
+        return '<tr' + (on ? ' class="is-selected"' : '') + '>' +
+          '<td class="cell-check"><input type="checkbox" data-id="' + r.id + '"' + (on ? ' checked' : '') +
+          ' aria-label="Обрати рядок: ' + r.name + '"></td>' +
+          '<th scope="row">' + r.name + '</th>' +
+          '<td>' + r.city + '</td>' +
+          '<td>' + fmtDate(r.date) + '</td>' +
+          '<td class="num">' + fmtSum(r.sum) + '</td>' +
+          '<td><span class="badge' + (r.sent ? ' badge--sent' : '') + '">' + (r.sent ? 'Надіслано' : 'Нове') + '</span></td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    sortHeads.forEach(function (th) {
+      var ind = th.querySelector('.sort-ind');
+      if (th.dataset.key === sort.key) {
+        th.setAttribute('aria-sort', sort.dir === 'asc' ? 'ascending' : 'descending');
+        ind.textContent = sort.dir === 'asc' ? '▲' : '▼';
+      } else {
+        th.removeAttribute('aria-sort');
+        ind.textContent = '↕';
+      }
+    });
+    updateMeta();
+  }
+
+  function updateMeta() {
+    var visSel = visible.filter(function (r) { return selected[r.id]; }).length;
+    var total = countSelected();
+    gridAll.checked = visible.length > 0 && visSel === visible.length;
+    gridAll.indeterminate = visSel > 0 && visSel < visible.length;
+    gridAll.disabled = visible.length === 0;
+
+    gridBulk.disabled = total === 0;
+    gridBulk.textContent = total ? 'Позначити як надіслані (' + total + ')' : 'Позначити як надіслані';
+
+    var hidden = data.length - visible.length;
+    var parts = ['Показано ' + visible.length + ' з ' + data.length];
+    if (hidden) parts[0] += ' (фільтр ховає ' + hidden + ')';
+    var selText = 'обрано ' + total;
+    if (total - visSel > 0) selText += ', з них поза фільтром — ' + (total - visSel);
+    parts.push(selText);
+    parts.push('сортування: ' + colNames[sort.key] + ', ' + (sort.dir === 'asc' ? 'за зростанням' : 'за спаданням'));
+    gridOut.textContent = parts.join(' · ') + '.';
+  }
+
+  gridBody.addEventListener('change', function (e) {
+    var id = e.target.getAttribute('data-id');
+    if (!id) return;
+    if (e.target.checked) selected[id] = true; else delete selected[id];
+    e.target.closest('tr').classList.toggle('is-selected', e.target.checked);
+    updateMeta();
+  });
+
+  gridAll.addEventListener('change', function () {
+    var on = gridAll.checked;
+    visible.forEach(function (r) { if (on) selected[r.id] = true; else delete selected[r.id]; });
+    renderRows();
+  });
+
+  sortHeads.forEach(function (th) {
+    th.querySelector('.sort-btn').addEventListener('click', function () {
+      var key = th.dataset.key;
+      if (sort.key === key) sort.dir = sort.dir === 'asc' ? 'desc' : 'asc';
+      else { sort.key = key; sort.dir = 'asc'; }
+      renderRows();
+    });
+  });
+
+  gridFilter.addEventListener('input', renderRows);
+
+  gridBulk.addEventListener('click', function () {
+    var n = countSelected();
+    data.forEach(function (r) { if (selected[r.id]) r.sent = true; });
+    selected = {};
+    renderRows();
+    gridOut.textContent = '✓ Позначено як надіслані: ' + n + '. ' + gridOut.textContent;
+  });
+
+  renderRows();
+})();
+</script>
 </body>
 </html>
